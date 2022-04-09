@@ -51,5 +51,9 @@ export default {
     border-radius: 5px;
     /* font-weight: bold; */
   }
+  .justifyCenter{
+  display: flex;
+  justify-content: center;
+}
 
 </style>

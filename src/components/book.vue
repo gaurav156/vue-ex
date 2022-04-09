@@ -1,8 +1,35 @@
 <template>
   <div>
-    <p v-if="username">Hi {{username}}, Welcome!</p>
+    <p v-if="username">Hi {{ username }}, Welcome!</p>
     <h1>Books</h1>
-    <p>List of Books coming Soon...</p>
+    <!-- <p>List of Books coming Soon...</p> -->
+    <p>List of Books:</p>
+    <div>
+      <table class="table">
+        <thead>
+          <tr>
+            <td>Book ID</td>
+            <td>Book Title</td>
+            <td>ISSN No.</td>
+            <td>Customer</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="justifyCenter">1</td>
+            <td>Harry Potter and Dungeon</td>
+            <td >12112</td>
+            <td class="justifyCenter"><button type="button">View</button></td>
+          </tr>
+          <tr>
+            <td class="justifyCenter">2</td>
+            <td>Harry Potter and Dumbledore</td>
+            <td>23232</td>
+            <td class="justifyCenter"><button type="button">View</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   <!-- <loginLib :getUser="getUserName"/> -->
   <!-- <loginLib :getUser="username"/> -->
@@ -13,15 +40,15 @@
 // import loginLib from './login.vue'
 
 export default {
-  name: 'bookLib',
+  name: "bookLib",
   // components: {
   //   loginLib,
   // },
-  data(){
-    return{
-      username: localStorage.getItem('user-info'),
+  data() {
+    return {
+      username: localStorage.getItem("user-info"),
       // welcomeMsg: false,
-    }
+    };
   },
   // props:{
   //   username: String
@@ -32,19 +59,26 @@ export default {
   //     this.welcomeMsg=true;
   //   },
   // }
-}
+};
 </script>
 
 <style scoped>
-  h1{
-    color: rgb(0, 61, 153);
-    padding: 10px;
-  }
-  p{
-    padding: 10px;
-  }
-  div {
+h1 {
+  color: rgb(0, 61, 153);
+  padding: 10px;
+}
+p {
+  padding: 10px;
+}
+div {
   padding: 10px;
   margin: 10px;
+}
+.table{
+  border: 1px solid rgb(0, 61, 153);
+}
+table td{
+  border: 1px solid rgb(0, 61, 153);
+  padding: 10px;
 }
 </style>
