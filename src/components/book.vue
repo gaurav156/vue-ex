@@ -14,7 +14,7 @@
             <td>Customer</td>
           </tr>
         </thead>
-        <tbody>
+        <!-- <tbody>
           <tr>
             <td class="justifyCenter">1</td>
             <td>Harry Potter and Dungeon</td>
@@ -25,6 +25,14 @@
             <td class="justifyCenter">2</td>
             <td>Harry Potter and Dumbledore</td>
             <td>23232</td>
+            <td class="justifyCenter"><button type="button">View</button></td>
+          </tr>
+        </tbody> -->
+        <tbody>
+          <tr v-for="item in books" :key="item.bookID">
+            <td class="justifyCenter">{{item.bookID}}</td>
+            <td>{{item.bookTitle}}</td>
+            <td>{{item.issnNo}}</td>
             <td class="justifyCenter"><button type="button">View</button></td>
           </tr>
         </tbody>
@@ -47,6 +55,20 @@ export default {
   data() {
     return {
       username: localStorage.getItem("user-info"),
+      books: [
+        {
+          bookID: '1',
+          bookTitle: 'Harry Potter and Dungeo',
+          issnNo: '12112',
+          customerID: ['1','2']
+        },
+        {
+          bookID: '2',
+          bookTitle: 'Harry Potter and Dumbledore',
+          issnNo: '23232',
+          customerID: ['2']
+        }
+      ]
       // welcomeMsg: false,
     };
   },
