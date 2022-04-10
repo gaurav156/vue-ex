@@ -29,17 +29,24 @@
             <td class="justifyCenter">{{item.customerID}}</td>
             <td>{{item.customerName}}</td>
             <td>{{item.membershipDate}}</td>
-            <td class="justifyCenter"><button type="button">View</button></td>
+            <td class="justifyCenter"><button type="button" @click.prevent="onOpenDialog()">View</button></td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
+  <dialogView v-if="openDialog">
+    <button @click.prevent="openDialog=false">Close</button>
+  </dialogView>
 </template>
 
 <script>
+import dialogView from './dialogView.vue'
 export default {
   name: "customerLib",
+  components: {
+    dialogView,
+  },
   data(){
     return{
       customers: [
@@ -55,7 +62,13 @@ export default {
           membershipDate: '01-Dec-2022',
           bookID: ['1','2']
         }
-      ]
+      ],
+      openDialog: false,
+    }
+  },
+  methods:{
+    onOpenDialog(){
+      this.openDialog=true;
     }
   }
 };

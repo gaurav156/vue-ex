@@ -33,12 +33,15 @@
             <td class="justifyCenter">{{item.bookID}}</td>
             <td>{{item.bookTitle}}</td>
             <td>{{item.issnNo}}</td>
-            <td class="justifyCenter"><button type="button">View</button></td>
+            <td class="justifyCenter"><button type="button" @click.prevent="onOpenDialog()">View</button></td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
+  <dialogView v-if="openDialog">
+    <button @click.prevent="openDialog=false">Close</button>
+  </dialogView>
   <!-- <loginLib :getUser="getUserName"/> -->
   <!-- <loginLib :getUser="username"/> -->
   <!-- <loginLib /> -->
@@ -46,12 +49,14 @@
 
 <script>
 // import loginLib from './login.vue'
+import dialogView from './dialogView.vue'
 
 export default {
   name: "bookLib",
-  // components: {
-  //   loginLib,
-  // },
+  components: {
+    // loginLib,
+    dialogView,
+  },
   data() {
     return {
       username: localStorage.getItem("user-info"),
@@ -68,19 +73,19 @@ export default {
           issnNo: '23232',
           customerID: ['2']
         }
-      ]
+      ],
+      openDialog: false,
       // welcomeMsg: false,
     };
   },
   // props:{
   //   username: String
   // }
-  // methods:{
-  //   getUserName(name){
-  //     this.username=name;
-  //     this.welcomeMsg=true;
-  //   },
-  // }
+  methods:{
+    onOpenDialog(){
+      this.openDialog=true;
+    }
+  }
 };
 </script>
 
