@@ -14,20 +14,6 @@
             <td>Customer</td>
           </tr>
         </thead>
-        <!-- <tbody>
-          <tr>
-            <td class="justifyCenter">1</td>
-            <td>Harry Potter and Dungeon</td>
-            <td >12112</td>
-            <td class="justifyCenter"><button type="button">View</button></td>
-          </tr>
-          <tr>
-            <td class="justifyCenter">2</td>
-            <td>Harry Potter and Dumbledore</td>
-            <td>23232</td>
-            <td class="justifyCenter"><button type="button">View</button></td>
-          </tr>
-        </tbody> -->
         <tbody>
           <tr v-for="item in books" :key="item.bookID">
             <td class="justifyCenter">{{item.bookID}}</td>
@@ -39,23 +25,18 @@
       </table>
     </div>
   </div>
-  <dialogView v-if="openDialog" :customerIDListDialog="this.customerIDList">
+  <dialogViewCustomer v-if="openDialog" :customerIDListDialog="this.customerIDList">
     <button @click.prevent="openDialog=false">Close</button>
-  </dialogView>
-  <!-- <loginLib :getUser="getUserName"/> -->
-  <!-- <loginLib :getUser="username"/> -->
-  <!-- <loginLib /> -->
+  </dialogViewCustomer>
 </template>
 
 <script>
-// import loginLib from './login.vue'
-import dialogView from './dialogView.vue'
+import dialogViewCustomer from './dialogViewCustomer.vue'
 
 export default {
   name: "bookLib",
   components: {
-    // loginLib,
-    dialogView,
+    dialogViewCustomer,
   },
   data() {
     return {
@@ -76,12 +57,8 @@ export default {
       ],
       openDialog: false,
       customerIDList: [],
-      // welcomeMsg: false,
     };
   },
-  // props:{
-  //   username: String
-  // }
   methods:{
     onOpenDialog(){
       this.openDialog=true;
