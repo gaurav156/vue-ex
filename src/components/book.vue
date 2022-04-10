@@ -33,13 +33,13 @@
             <td class="justifyCenter">{{item.bookID}}</td>
             <td>{{item.bookTitle}}</td>
             <td>{{item.issnNo}}</td>
-            <td class="justifyCenter"><button type="button" @click.prevent="onOpenDialog()">View</button></td>
+            <td class="justifyCenter"><button type="button" @click.prevent="onOpenDialog(); getCustomerID(item.customerID)">View</button></td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-  <dialogView v-if="openDialog">
+  <dialogView v-if="openDialog" :customerIDListDialog="this.customerIDList">
     <button @click.prevent="openDialog=false">Close</button>
   </dialogView>
   <!-- <loginLib :getUser="getUserName"/> -->
@@ -75,6 +75,7 @@ export default {
         }
       ],
       openDialog: false,
+      customerIDList: [],
       // welcomeMsg: false,
     };
   },
@@ -84,6 +85,10 @@ export default {
   methods:{
     onOpenDialog(){
       this.openDialog=true;
+    },
+    getCustomerID(CID){
+      this.customerIDList=CID;
+      console.log(CID);
     }
   }
 };

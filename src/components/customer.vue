@@ -29,13 +29,13 @@
             <td class="justifyCenter">{{item.customerID}}</td>
             <td>{{item.customerName}}</td>
             <td>{{item.membershipDate}}</td>
-            <td class="justifyCenter"><button type="button" @click.prevent="onOpenDialog()">View</button></td>
+            <td class="justifyCenter"><button type="button" @click.prevent="onOpenDialog(); getBookID(item.bookID)">View</button></td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-  <dialogView v-if="openDialog">
+  <dialogView v-if="openDialog" :bookIDListDialog="this.bookIDList">
     <button @click.prevent="openDialog=false">Close</button>
   </dialogView>
 </template>
@@ -64,11 +64,16 @@ export default {
         }
       ],
       openDialog: false,
+      bookIDList: [],
     }
   },
   methods:{
     onOpenDialog(){
       this.openDialog=true;
+    },
+    getBookID(BID){
+      this.bookIDList=BID;
+      console.log(BID);
     }
   }
 };

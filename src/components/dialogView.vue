@@ -62,8 +62,8 @@ export default {
   props: {
     // booksDialog: [],
     // customersDialog: [],
-    bookIDDialog: [],
-    customerIDDialog: [],
+    bookIDListDialog: [],
+    customerIDListDialog: [],
   },
   data() {
     return {
@@ -96,13 +96,14 @@ export default {
           bookID: ["1", "2"],
         },
       ],
-      customerID: [],
+    //   customerIDlistDialog: [],
     };
   },
   methods: {
     test() {
-      console.log(this.customerID);
-      console.log(this.customers);
+      console.log(this.customerIDListDialog);
+      console.log(this.bookIDListDialog);
+    //   console.log(this.customers);
     },
   },
   async created() {
