@@ -43,16 +43,20 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="i in customers" :key="i.customerID">
+        <!-- <tr v-for="item in customers" :key="item.customerID"> -->
           <!-- <td class="justifyCenter">{{item.bookID}}</td> -->
-          <td>{{ i.customerName }}</td>
+          <!-- <td  v-if="item.customerID===customerIDListDialog[item-1]">{{item.customerName }}</td>
+        </tr> -->
+        <tr v-for="item in this.result" :key="item">
+          <td>{{item}}</td>
         </tr>
       </tbody>
     </table>
-    <p v-for="item in customerIDlist" :key="item">{{ item }}</p>
+    <!-- <p v-for="item in customerIDListDialog" :key="item">{{ item }}</p> -->
     <!-- <p>{{customerIDlistDialog}}</p> -->
-    <button v-on:click="test()">test</button>
-    <p>{{ customers }}</p>
+    <!-- <button v-on:click="test()">test</button>
+    <p>{{ customers }}</p> -->
+    <button v-on:click="createView()">create</button>
   </div>
 </template>
 
@@ -105,12 +109,43 @@ export default {
       console.log(this.bookIDListDialog);
     //   console.log(this.customers);
     },
+    createView(){
+        const res = Object.values(this.customers);
+        console.log(res);
+        // while(this.customers.customerID===this.customerIDListDialog){
+        //     this.result=this.customers.customerName;
+        // }
+        // this.result = this.customerIDListDialog.filter(element => this.customers.customerID.includes(element));
+        // let resultM = result1.filter(this.customerIDListDialog => result2.some(this.customers => this.customerIDListDialog === this.customers.customerID);
+        // this.customers=[[1,'Somnath'],[2,'Pravin']],
+        // this.customerIDListDialog=[1,2],
+        // this.result=[],
+
+        // var i=0;
+        // while(i<res.length){
+        //     if(this.customerIDListDialog[i] === this.res[i][0]){
+        //         this.result.push(this.res[i][1]);
+        //     }
+        //     i++;
+        // }
+        // new String("a").valueOf() == new String("a").valueOf()
+
+        const filteredArray = this.customers.customerID.filter(value => this.customerIDListDialog.includes(value));
+
+        // while(i<this.customers.length){
+        //     if(this.customerIDListDialog[i] === this.result[i][0]){
+        //         this.result.push(this.customers[i][1]);
+        //     }
+        //     i++;
+        // }
+        console.log(filteredArray);
+    }
   },
-  async created() {
-    this.books = this.booksDialog;
-    this.customers = this.customersDialog;
-    this.customerID = this.customerIDlistDialog;
-  },
+//   async created() {
+//     this.books = this.booksDialog;
+//     this.customers = this.customersDialog;
+//     this.customerID = this.customerIDlistDialog;
+//   },
 };
 </script>
 
