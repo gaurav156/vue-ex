@@ -35,17 +35,17 @@
       </table>
     </div>
   </div>
-  <dialogView v-if="openDialog" :bookIDListDialog="this.bookIDList">
+  <dialogViewBook v-if="openDialog" :bookIDListDialog="this.bookIDList">
     <button @click.prevent="openDialog=false">Close</button>
-  </dialogView>
+  </dialogViewBook>
 </template>
 
 <script>
-import dialogView from './dialogView.vue'
+import dialogViewBook from './dialogViewBook.vue'
 export default {
   name: "customerLib",
   components: {
-    dialogView,
+    dialogViewBook,
   },
   data(){
     return{

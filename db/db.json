@@ -1,0 +1,30 @@
+{
+    "books": [
+        {
+          "bookID": "1",
+          "bookTitle": "Harry Potter and Dungeo",
+          "issnNo": "12112",
+          "customerID": ["1", "2"]
+        },
+        {
+          "bookID": "2",
+          "bookTitle": "Harry Potter and Dumbledore",
+          "issnNo": "23232",
+          "customerID": ["2"]
+        }
+      ],
+      "customers": [
+        {
+          "customerID": "1",
+          "customerName": "Somnath",
+          "membershipDate": "01-Dec-2020",
+          "bookID": ["1"]
+        },
+        {
+          "customerID": "2",
+          "customerName": "Pravin",
+          "membershipDate": "01-Dec-2022",
+          "bookID": ["1", "2"]
+        }
+      ]
+}
