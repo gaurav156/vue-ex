@@ -9,9 +9,9 @@
         <thead>
           <tr>
             <td class=" justifyCenter tableHeaderData">Book ID</td>
-            <td class="tableHeaderData">Book Title</td>
+            <td class="tableHeaderData" id="bookTitle">Book Title</td>
             <td class=" justifyCenter tableHeaderData">ISSN No.</td>
-            <td class="tableHeaderData">Customer</td>
+            <td class="tableHeaderData issn">Customer</td>
           </tr>
         </thead>
         <tbody>
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import dialogViewCustomer from './dialogViewCustomer.vue'
 
 export default {
@@ -41,20 +42,21 @@ export default {
   data() {
     return {
       username: localStorage.getItem("user-info"),
-      books: [
-        {
-          bookID: '1',
-          bookTitle: 'Harry Potter and Dungeo',
-          issnNo: '12112',
-          customerID: ['1','2']
-        },
-        {
-          bookID: '2',
-          bookTitle: 'Harry Potter and Dumbledore',
-          issnNo: '23232',
-          customerID: ['2']
-        }
-      ],
+      books: [],
+      // books: [
+      //   {
+      //     bookID: '1',
+      //     bookTitle: 'Harry Potter and Dungeo',
+      //     issnNo: '12112',
+      //     customerID: ['1','2']
+      //   },
+      //   {
+      //     bookID: '2',
+      //     bookTitle: 'Harry Potter and Dumbledore',
+      //     issnNo: '23232',
+      //     customerID: ['2']
+      //   }
+      // ],
       openDialog: false,
       customerIDList: [],
     };
@@ -67,6 +69,10 @@ export default {
       this.customerIDList=CID;
       console.log(CID);
     }
+  },
+  async mounted(){
+    let resultBooks = await axios.get("http://localhost:3000/books");
+    this.books = resultBooks.data;
   }
 };
 </script>
@@ -88,5 +94,8 @@ table td{
 }
 .issn{
   padding-left: 35px;
+}
+#bookTitle{
+  padding-left: 80px;
 }
 </style>

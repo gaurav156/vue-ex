@@ -29,7 +29,9 @@
 </template>
 
 <script>
+import axios from 'axios';
 import dialogViewBook from './dialogViewBook.vue'
+
 export default {
   name: "customerLib",
   components: {
@@ -37,20 +39,21 @@ export default {
   },
   data(){
     return{
-      customers: [
-        {
-          customerID: '1',
-          customerName: 'Somnath',
-          membershipDate: '01-Dec-2020',
-          bookID: ['1']
-        },
-        {
-          customerID: '2',
-          customerName: 'Pravin',
-          membershipDate: '01-Dec-2022',
-          bookID: ['1','2']
-        }
-      ],
+      customers: [],
+      // customers: [
+      //   {
+      //     customerID: '1',
+      //     customerName: 'Somnath',
+      //     membershipDate: '01-Dec-2020',
+      //     bookID: ['1']
+      //   },
+      //   {
+      //     customerID: '2',
+      //     customerName: 'Pravin',
+      //     membershipDate: '01-Dec-2022',
+      //     bookID: ['1','2']
+      //   }
+      // ],
       openDialog: false,
       bookIDList: [],
     }
@@ -63,6 +66,10 @@ export default {
       this.bookIDList=BID;
       console.log(BID);
     }
+  },
+  async mounted(){
+    let resultCustomers = await axios.get("http://localhost:3000/customers");
+    this.customers = resultCustomers.data;
   }
 };
 </script>
