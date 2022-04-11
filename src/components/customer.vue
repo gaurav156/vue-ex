@@ -1,30 +1,30 @@
 <template>
-  <div>
-    <h1>Customers</h1>
-    <p>List of Customers coming Soon...</p>
-    <div>
+  <div class="div">
+    <h1>Customers</h1><hr>
+    <p>List of Customers:</p>
+    <div class="tableDiv">
       <table class="table">
         <thead>
           <tr>
-            <td>Customer ID</td>
-            <td>Customer Name</td>
-            <td>Membership Date</td>
-            <td class="justifyCenter">Books</td>
+            <td class="tableHeaderData">Customer ID</td>
+            <td class="tableHeaderData">Customer Name</td>
+            <td class="tableHeaderData">Membership Date</td>
+            <td class="justifyCenter tableHeaderData">Books</td>
           </tr>
         </thead>
         <tbody>
           <tr v-for="item in customers" :key="item.customerID">
-            <td class="justifyCenter">{{item.customerID}}</td>
-            <td>{{item.customerName}}</td>
-            <td>{{item.membershipDate}}</td>
-            <td class="justifyCenter"><button type="button" @click.prevent="onOpenDialog(); getBookID(item.bookID)">View</button></td>
+            <td class="justifyCenter tableBodyData">{{item.customerID}}</td>
+            <td class="tableBodyData">{{item.customerName}}</td>
+            <td class="tableBodyData memDate">{{item.membershipDate}}</td>
+            <td class="justifyCenter tableBodyData"><button type="button" @click.prevent="onOpenDialog(); getBookID(item.bookID)" class="viewButton">View</button></td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
   <dialogViewBook v-if="openDialog" :bookIDListDialog="this.bookIDList">
-    <button @click.prevent="openDialog=false">Close</button>
+    <button @click.prevent="openDialog=false" class="closeButton">X</button>
   </dialogViewBook>
 </template>
 
@@ -75,15 +75,14 @@ h1 {
 p {
   padding: 10px;
 }
-div {
-  padding: 10px;
-  margin: 10px;
-}
 .table{
   border: 1px solid rgb(0, 61, 153);
 }
 table td{
-  border: 1px solid rgb(0, 61, 153);
+  /* border: 1px solid rgb(0, 61, 153); */
   padding: 10px;
+}
+.memDate{
+  padding-left: 28px;
 }
 </style>

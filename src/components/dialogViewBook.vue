@@ -1,17 +1,17 @@
 <template>
   <div class="backdrop"></div>
   <div class="dialog">
-    <p>Hi, it is dialog box!</p>
+    <!-- <p>Hi, it is dialog box!</p> -->
     <slot></slot>
     <table class="table">
       <thead>
         <tr>
-          <td>Book Title</td>
+          <td class="tableHeaderData">Book Title:</td>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in resultFinalBook" :key="item">
-          <td>{{item}}</td>
+          <td class="tableBodyData">{{item}}</td>
         </tr>
       </tbody>
     </table>
@@ -82,7 +82,7 @@ export default {
 </script>
 
 <style scoped>
-.backdrop {
+/* .backdrop {
   background: rgba(0, 0, 0, 0.5);
   position: fixed;
   left: 0px;
@@ -97,5 +97,5 @@ export default {
   width: 60vw;
   left: 20vw;
   padding: 20px;
-}
+} */
 </style>

@@ -1,31 +1,31 @@
 <template>
   <div class="backdrop"></div>
   <div class="dialog">
-    <p>Hi, it is dialog box!</p>
+    <!-- <p>Hi, it is dialog box!</p> -->
     <slot></slot>
-
-    <table class="table">
-      <thead>
-        <tr>
-          <td>Customer Name</td>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- <tr v-for="item in customers" :key="item.customerID"> -->
-        <!-- <td class="justifyCenter">{{item.bookID}}</td> -->
-        <!-- <td  v-if="item.customerID===customerIDListDialog[item-1]">{{item.customerName }}</td>
+    <div>
+      <table class="table">
+        <thead>
+          <tr>
+            <td class="tableHeaderData">Customer Name:</td>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr v-for="item in customers" :key="item.customerID"> -->
+          <!-- <td class="justifyCenter">{{item.bookID}}</td> -->
+          <!-- <td  v-if="item.customerID===customerIDListDialog[item-1]">{{item.customerName }}</td>
         </tr> -->
-        
-        <tr v-for="item in resultFinalCustomer" :key="item">
-          <td>{{item}}</td>
-        </tr>
 
-        <tr v-for="item in resultFinalBook" :key="item">
+          <tr v-for="item in resultFinalCustomer" :key="item">
+            <td class="tableBodyData">{{ item }}</td>
+          </tr>
+
+          <!-- <tr v-for="item in resultFinalBook" :key="item">
           <td>{{item}}</td>
-        </tr>
-      </tbody>
-    </table>
-  
+        </tr> -->
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -77,24 +77,29 @@ export default {
   async mounted() {
     let resultCustomer = await axios.get("http://localhost:3000/customers");
     this.displayTableCustomer = resultCustomer.data;
-        for(var i=0; i<this.displayTableCustomer.length; i++){
-            for(var j=0; j<this.customerIDListDialog.length; j++){
-                if(this.customerIDListDialog[j] === this.displayTableCustomer[i].customerID){
-                    this.resultFinalCustomer.push(this.displayTableCustomer[i].customerName);
-                }
-            }
+    for (var i = 0; i < this.displayTableCustomer.length; i++) {
+      for (var j = 0; j < this.customerIDListDialog.length; j++) {
+        if (
+          this.customerIDListDialog[j] ===
+          this.displayTableCustomer[i].customerID
+        ) {
+          this.resultFinalCustomer.push(
+            this.displayTableCustomer[i].customerName
+          );
         }
-        console.log(this.resultFinalCustomer);
+      }
+    }
+    console.log(this.resultFinalCustomer);
 
     let resultBook = await axios.get("http://localhost:3000/books");
     this.displayTableBook = resultBook.data;
-    for(var a=0; a<this.displayTableBook.length; a++){
-        for(var b=0; b<this.bookIDListDialog.length; b++){
-            if(this.bookIDListDialog[b] === this.displayTableBook[a].bookID){
-                this.resultFinalBook.push(this.displayTableBook[a].bookID);
-                console.log(this.displayTableBook[a].bookID);
-            }
+    for (var a = 0; a < this.displayTableBook.length; a++) {
+      for (var b = 0; b < this.bookIDListDialog.length; b++) {
+        if (this.bookIDListDialog[b] === this.displayTableBook[a].bookID) {
+          this.resultFinalBook.push(this.displayTableBook[a].bookID);
+          console.log(this.displayTableBook[a].bookID);
         }
+      }
     }
     console.log(this.resultFinalBook);
   },
@@ -102,20 +107,5 @@ export default {
 </script>
 
 <style scoped>
-.backdrop {
-  background: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-}
-.dialog {
-  position: fixed;
-  top: 20%;
-  background: white;
-  width: 60vw;
-  left: 20vw;
-  padding: 20px;
-}
+
 </style>

@@ -1,32 +1,32 @@
 <template>
-  <div>
+  <div class="div">
     <p v-if="username">Hi {{ username }}, Welcome!</p>
-    <h1>Books</h1>
+    <h1>Books</h1><hr>
     <!-- <p>List of Books coming Soon...</p> -->
     <p>List of Books:</p>
-    <div>
+    <div class="tableDiv">
       <table class="table">
         <thead>
           <tr>
-            <td>Book ID</td>
-            <td>Book Title</td>
-            <td>ISSN No.</td>
-            <td>Customer</td>
+            <td class=" justifyCenter tableHeaderData">Book ID</td>
+            <td class="tableHeaderData">Book Title</td>
+            <td class=" justifyCenter tableHeaderData">ISSN No.</td>
+            <td class="tableHeaderData">Customer</td>
           </tr>
         </thead>
         <tbody>
           <tr v-for="item in books" :key="item.bookID">
-            <td class="justifyCenter">{{item.bookID}}</td>
-            <td>{{item.bookTitle}}</td>
-            <td>{{item.issnNo}}</td>
-            <td class="justifyCenter"><button type="button" @click.prevent="onOpenDialog(); getCustomerID(item.customerID)">View</button></td>
+            <td class="justifyCenter tableBodyData">{{item.bookID}}</td>
+            <td class="tableBodyData">{{item.bookTitle}}</td>
+            <td class="tableBodyData issn">{{item.issnNo}}</td>
+            <td class="justifyCenter tableBodyData"><button type="button" @click.prevent="onOpenDialog(); getCustomerID(item.customerID)" class="viewButton">View</button></td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
   <dialogViewCustomer v-if="openDialog" :customerIDListDialog="this.customerIDList">
-    <button @click.prevent="openDialog=false">Close</button>
+    <button @click.prevent="openDialog=false" class="closeButton">X</button>
   </dialogViewCustomer>
 </template>
 
@@ -79,15 +79,14 @@ h1 {
 p {
   padding: 10px;
 }
-div {
-  padding: 10px;
-  margin: 10px;
-}
 .table{
-  border: 1px solid rgb(0, 61, 153);
+  border: 1px solid rgb(0, 102, 255);
 }
 table td{
-  border: 1px solid rgb(0, 61, 153);
+  /* border: 1px solid rgb(0, 61, 153); */
   padding: 10px;
+}
+.issn{
+  padding-left: 35px;
 }
 </style>

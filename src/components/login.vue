@@ -160,6 +160,7 @@ div {
   display: block;
   padding: 10px;
   margin: auto;
+  margin-top:5%;
   width: 302px;
   height: fit-content;
   background-color: rgb(0, 102, 255);
