@@ -1,6 +1,6 @@
 <template>
   <div class="div">
-    <p v-if="username">Hi {{ username }}, Welcome!</p>
+    <p v-if="username" class="welcomeMsg">Hi {{ username }}, Welcome!</p>
     <h1>Books</h1><hr>
     <!-- <p>List of Books coming Soon...</p> -->
     <p>List of Books:</p>
@@ -78,20 +78,6 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  color: rgb(0, 61, 153);
-  padding: 10px;
-}
-p {
-  padding: 10px;
-}
-.table{
-  border: 1px solid rgb(0, 102, 255);
-}
-table td{
-  /* border: 1px solid rgb(0, 61, 153); */
-  padding: 10px;
-}
 .issn{
   padding-left: 35px;
 }

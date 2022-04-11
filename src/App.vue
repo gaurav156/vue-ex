@@ -54,7 +54,6 @@ li {
   background-color: rgb(128, 179, 255);
   color: rgb(0, 61, 153);
   border-radius: 5px;
-  /* font-weight: bold; */
 }
 .justifyCenter {
   display: flex;
@@ -73,20 +72,24 @@ li {
   color: white;
 }
 .tableHeaderData {
-  /* border-bottom: 1px solid black; */
   background-color: rgb(0, 102, 255);
   color: white;
-  padding: 10px;
+  padding: 15px;
   min-width: 100px;
 }
 .tableBodyData {
-  /* border-bottom: 1px solid black; */
   background-color: rgb(128, 179, 255);
   color: black;
-  padding: 10px;
+  padding: 15px;
 }
 .table {
   min-width: 220px;
+  border: 1px solid rgb(0, 102, 255);
+}
+.dialogTable{
+  min-width: 220px;
+  margin-left: 30px;
+  border: 1px solid rgb(0, 102, 255);
 }
 .backdrop {
   background: rgba(0, 0, 0, 0.5);
@@ -104,9 +107,9 @@ li {
   /* left: 20vw; */
   /* padding: 20px; */
   width: auto;
-  left: 40vw;
-  padding: 40px;
-  min-width: 300px;
+  left: 35vw;
+    padding: 40px;
+    min-width: 330px;
 }
 .tableDiv {
   padding-left: 10px;
@@ -125,9 +128,22 @@ li {
   border: none;
   font-size: medium;
 }
-.viewButton:hover{
+.viewButton:hover {
   border-color: 1px solid blue;
   background-color: rgb(0, 61, 153);
 }
-
+.welcomeMsg {
+  display: flex;
+  float: right;
+}
+h1 {
+  color: rgb(0, 61, 153);
+  padding: 10px;
+}
+p {
+  padding: 10px;
+}
+table td{
+  padding: 10px;
+}
 </style>

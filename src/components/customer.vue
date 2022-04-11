@@ -75,20 +75,6 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  color: rgb(0, 61, 153);
-  padding: 10px;
-}
-p {
-  padding: 10px;
-}
-.table{
-  border: 1px solid rgb(0, 61, 153);
-}
-table td{
-  /* border: 1px solid rgb(0, 61, 153); */
-  padding: 10px;
-}
 .memDate{
   padding-left: 28px;
 }
