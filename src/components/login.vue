@@ -132,6 +132,7 @@ h1 {
   /* color: rgb(0, 61, 153); */
   /* padding: 10px; */
   text-align: center;
+  color: white;
 }
 p {
   padding: 10px;

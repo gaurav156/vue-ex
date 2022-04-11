@@ -76,20 +76,24 @@ li {
   color: white;
   padding: 15px;
   min-width: 100px;
+  border-radius: 5px;
 }
 .tableBodyData {
   background-color: rgb(128, 179, 255);
   color: black;
   padding: 15px;
+  border-radius: 5px;
 }
 .table {
   min-width: 220px;
   border: 1px solid rgb(0, 102, 255);
+  border-radius: 5px;
 }
 .dialogTable{
   min-width: 220px;
   margin-left: 30px;
   border: 1px solid rgb(0, 102, 255);
+  border-radius: 5px;
 }
 .backdrop {
   background: rgba(0, 0, 0, 0.5);
@@ -127,6 +131,7 @@ li {
   color: white;
   border: none;
   font-size: medium;
+  border-radius: 5px;
 }
 .viewButton:hover {
   border-color: 1px solid blue;
