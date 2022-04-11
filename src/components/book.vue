@@ -1,6 +1,7 @@
 <template>
+  <headerLib />
   <div class="div">
-    <p v-if="username" class="welcomeMsg">Hi {{ username }}, Welcome!</p>
+    <!-- <p v-if="username" class="welcomeMsg">Hi {{ username }}, Welcome!</p> -->
     <h1>Books</h1><hr>
     <!-- <p>List of Books coming Soon...</p> -->
     <p>List of Books:</p>
@@ -31,13 +32,15 @@
 </template>
 
 <script>
+import headerLib from './header.vue'
 import axios from 'axios';
 import dialogViewCustomer from './dialogViewCustomer.vue'
 
 export default {
   name: "bookLib",
   components: {
-    dialogViewCustomer,
+    headerLib,
+    dialogViewCustomer
   },
   data() {
     return {
@@ -71,6 +74,9 @@ export default {
     }
   },
   async mounted(){
+    if(!this.username){
+      this.$router.push({name:'login'})
+    }
     let resultBooks = await axios.get("http://localhost:3000/books");
     this.books = resultBooks.data;
   }

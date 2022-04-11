@@ -1,4 +1,5 @@
 <template>
+  <headerLib />
   <div class="div">
     <h1>Customers</h1><hr>
     <p>List of Customers:</p>
@@ -29,16 +30,19 @@
 </template>
 
 <script>
+import headerLib from './header.vue'
 import axios from 'axios';
 import dialogViewBook from './dialogViewBook.vue'
 
 export default {
   name: "customerLib",
   components: {
-    dialogViewBook,
+    headerLib,
+    dialogViewBook
   },
   data(){
     return{
+      username: localStorage.getItem("user-info"),
       customers: [],
       // customers: [
       //   {
@@ -68,6 +72,9 @@ export default {
     }
   },
   async mounted(){
+    if(!this.username){
+      this.$router.push({name:'login'})
+    }
     let resultCustomers = await axios.get("http://localhost:3000/customers");
     this.customers = resultCustomers.data;
   }

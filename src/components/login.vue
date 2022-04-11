@@ -55,13 +55,6 @@ export default {
       errorMsg: "",
     };
   },
-  // components:{
-  //   bookLib,
-  // },
-  // props: {
-  //     // getUser: Function
-  //     getUser: String
-  // },
   methods: {
     // login(){
     //   // this.$router.push({name:'book'});
@@ -129,8 +122,6 @@ export default {
 
 <style scoped>
 h1 {
-  /* color: rgb(0, 61, 153); */
-  /* padding: 10px; */
   text-align: center;
   color: white;
 }

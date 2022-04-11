@@ -1,19 +1,4 @@
 <template>
-  <header>
-    <nav>
-      <ul>
-        <li><router-link class="nav-element" to="/">Books</router-link></li>
-        <li>
-          <router-link class="nav-element" to="/customer"
-            >Customers</router-link
-          >
-        </li>
-        <li>
-          <router-link class="nav-element" to="/login">Login</router-link>
-        </li>
-      </ul>
-    </nav>
-  </header>
   <router-view></router-view>
   <!-- <keep-alive>
     <router-view :key="$route.fullPath" />
@@ -89,7 +74,7 @@ li {
   border: 1px solid rgb(0, 102, 255);
   border-radius: 5px;
 }
-.dialogTable{
+.dialogTable {
   min-width: 220px;
   margin-left: 30px;
   border: 1px solid rgb(0, 102, 255);
@@ -112,8 +97,8 @@ li {
   /* padding: 20px; */
   width: auto;
   left: 35vw;
-    padding: 40px;
-    min-width: 330px;
+  padding: 40px;
+  min-width: 330px;
 }
 .tableDiv {
   padding-left: 10px;
@@ -137,9 +122,14 @@ li {
   border-color: 1px solid blue;
   background-color: rgb(0, 61, 153);
 }
-.welcomeMsg {
+.username {
+  top: 10px px;
+  position: fixed;
+  right: 10px;
+  color: white;
+  padding-top: 15px;
   display: flex;
-  float: right;
+  padding-right: 40px;
 }
 h1 {
   color: rgb(0, 61, 153);
@@ -148,7 +138,7 @@ h1 {
 p {
   padding: 10px;
 }
-table td{
+table td {
   padding: 10px;
 }
 </style>
