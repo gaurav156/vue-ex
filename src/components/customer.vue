@@ -1,6 +1,6 @@
 <template>
   <headerLib />
-  <div class="div">
+  <div class="divP">
     <h1>Customers</h1><hr>
     <p>List of Customers:</p>
     <div class="tableDiv">

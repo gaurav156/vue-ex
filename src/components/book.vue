@@ -1,6 +1,6 @@
 <template>
   <headerLib />
-  <div class="div">
+  <div class="divP">
     <!-- <p v-if="username" class="welcomeMsg">Hi {{ username }}, Welcome!</p> -->
     <h1>Books</h1><hr>
     <!-- <p>List of Books coming Soon...</p> -->

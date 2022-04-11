@@ -1,41 +1,45 @@
 <template>
-  <div class="LoginCompo">
-    <h1>Login</h1>
-    <div class="inputDiv">
-      <label class="inputClass">
-        User Name:
-        <input
-          type="text"
-          placeholder="Enter Username"
-          v-model.lazy="form.username"
-          ref="username"
-          class="inputText"
-          id="username"
-        />
-      </label>
-      <label>
-        Password:
-        <input
-          type="password"
-          placeholder="Enter Password"
-          v-model="form.password"
-          ref="password"
-          class="inputText"
-          id="password"
-        /> </label
-      ><br />
-      <!-- <button v-on:click="getUser(form.username)" type="button">Submit</button> -->
-      <!-- <button v-on:click="login(); getUser(form.username)" type="button">Submit</button> -->
-      <button v-on:click="login" type="button" class="submitBtn">Submit</button>
-      <div v-if="this.errorAlert" class="errorAlertClass">
-        <p>{{ errorMsg }}</p>
+  <div class="bg">
+    <div class="LoginCompo">
+      <h1>Login</h1>
+      <div class="inputDiv">
+        <label class="inputClass">
+          User Name:
+          <input
+            type="text"
+            placeholder="Enter Username"
+            v-model.lazy="form.username"
+            ref="username"
+            class="inputText"
+            id="username"
+          />
+        </label>
+        <label>
+          Password:
+          <input
+            type="password"
+            placeholder="Enter Password"
+            v-model="form.password"
+            ref="password"
+            class="inputText"
+            id="password"
+          /> </label
+        ><br />
+        <!-- <button v-on:click="getUser(form.username)" type="button">Submit</button> -->
+        <!-- <button v-on:click="login(); getUser(form.username)" type="button">Submit</button> -->
+        <button v-on:click="login" type="button" class="submitBtn">
+          Submit
+        </button>
+        <div v-if="this.errorAlert" class="errorAlertClass">
+          <p>{{ errorMsg }}</p>
+        </div>
       </div>
+      <!-- <bookLib :username="form.username"/> -->
+      <!-- <bookLib /> -->
+      <!-- <v-if redirect><router-link class="nav-element" to="/">Books</router-link></v-if> -->
+      <!-- <bookLib :username= "form.username"/> -->
+      <!-- <bookLib v-show="Hidden" :username= "form.username"/> -->
     </div>
-    <!-- <bookLib :username="form.username"/> -->
-    <!-- <bookLib /> -->
-    <!-- <v-if redirect><router-link class="nav-element" to="/">Books</router-link></v-if> -->
-    <!-- <bookLib :username= "form.username"/> -->
-    <!-- <bookLib v-show="Hidden" :username= "form.username"/> -->
   </div>
 </template>
 
@@ -123,7 +127,7 @@ export default {
 <style scoped>
 h1 {
   text-align: center;
-  color: white;
+  color: rgb(0, 102, 255);
 }
 p {
   padding: 10px;
@@ -152,33 +156,32 @@ div {
   display: block;
   padding: 10px;
   margin: auto;
-  margin-top:5%;
+  margin-top: 5%;
   width: 302px;
   height: fit-content;
-  background-color: rgb(0, 102, 255);
+  background-color: white;
   border-radius: 5px;
-  color: white;
-  /* -moz-box-shadow: 0 0 3px #ccc;
-  -webkit-box-shadow: 0 0 3px #ccc;
-  box-shadow: 0 0 3px #ccc; */
+  color: rgb(0, 102, 255);
+  box-shadow: 0 0 15px rgb(14, 14, 14);
 }
 .submitBtn {
   justify-self: center;
-  background-color: white;
+  background-color: rgb(0, 102, 255);
   border-color: lightblue;
   border-radius: 5px;
   width: -webkit-fill-available;
-  color: rgb(0, 102, 255);
+  color: white;
   font-weight: bold;
   padding: 4px;
   font-size: medium;
+  cursor: pointer;
 }
 .inputText {
   display: grid;
   width: -webkit-fill-available;
   height: 30px;
   border-radius: 5px;
-  border: none;
+  border: 1px solid rgb(0, 102, 255);
   padding-left: 20px;
   padding-bottom: 2px;
   margin-top: 5px;
@@ -188,8 +191,19 @@ div {
 }
 .inputDiv {
   display: grid;
+  margin-top: 0px;
+  padding-top: 10px;
 }
 .submitBtn:hover {
   background-color: lightblue;
+  color: rgb(0, 102, 255);
+}
+.bg {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 102, 255);
+  padding: 0px;
+  margin: 0px;
+  position: fixed;
 }
 </style>

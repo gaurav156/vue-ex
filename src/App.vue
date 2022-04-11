@@ -51,6 +51,7 @@ li {
   font-size: larger;
   font-weight: 600;
   color: slategray;
+  cursor: pointer;
 }
 .closeButton:hover {
   background-color: #fa4549;
@@ -103,7 +104,7 @@ li {
 .tableDiv {
   padding-left: 10px;
 }
-.div {
+.divP {
   padding: 10px;
   margin: 10px;
 }
@@ -117,6 +118,7 @@ li {
   border: none;
   font-size: medium;
   border-radius: 5px;
+  cursor: pointer;
 }
 .viewButton:hover {
   border-color: 1px solid blue;
