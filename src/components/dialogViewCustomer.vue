@@ -36,7 +36,11 @@ export default {
   },
 
   async mounted() {
-    let resultCustomer = await axios.get("http://localhost:3000/customers");
+    let resultCustomer = await axios
+      .get("http://localhost:3000/customers", { timeout: 2000 })
+      .catch((error) => {
+        console.log(error);
+      });
     this.displayTableCustomer = resultCustomer.data;
     for (var i = 0; i < this.displayTableCustomer.length; i++) {
       for (var j = 0; j < this.customerIDListDialog.length; j++) {

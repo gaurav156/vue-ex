@@ -1,7 +1,8 @@
 <template>
   <headerLib />
   <div class="divP">
-    <h1>Customers</h1><hr>
+    <h1>Customers</h1>
+    <hr />
     <p>List of Customers:</p>
     <div class="tableDiv">
       <table class="table">
@@ -15,33 +16,44 @@
         </thead>
         <tbody>
           <tr v-for="item in customers" :key="item.customerID">
-            <td class="justifyCenter tableBodyData">{{item.customerID}}</td>
-            <td class="tableBodyData">{{item.customerName}}</td>
-            <td class="tableBodyData memDate">{{item.membershipDate}}</td>
-            <td class="justifyCenter tableBodyData"><button type="button" @click.prevent="onOpenDialog(); getBookID(item.bookID)" class="viewButton">View</button></td>
+            <td class="justifyCenter tableBodyData">{{ item.customerID }}</td>
+            <td class="tableBodyData">{{ item.customerName }}</td>
+            <td class="tableBodyData memDate">{{ item.membershipDate }}</td>
+            <td class="justifyCenter tableBodyData">
+              <button
+                type="button"
+                @click.prevent="
+                  onOpenDialog();
+                  getBookID(item.bookID);
+                "
+                class="viewButton"
+              >
+                View
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
   <dialogViewBook v-if="openDialog" :bookIDListDialog="this.bookIDList">
-    <button @click.prevent="openDialog=false" class="closeButton">X</button>
+    <button @click.prevent="openDialog = false" class="closeButton">X</button>
   </dialogViewBook>
 </template>
 
 <script>
-import headerLib from './header.vue'
-import axios from 'axios';
-import dialogViewBook from './dialogViewBook.vue'
+import headerLib from "./header.vue";
+import axios from "axios";
+import dialogViewBook from "./dialogViewBook.vue";
 
 export default {
   name: "customerLib",
   components: {
     headerLib,
-    dialogViewBook
+    dialogViewBook,
   },
-  data(){
-    return{
+  data() {
+    return {
       username: localStorage.getItem("user-info"),
       customers: [],
       // customers: [
@@ -60,29 +72,34 @@ export default {
       // ],
       openDialog: false,
       bookIDList: [],
-    }
+    };
   },
-  methods:{
-    onOpenDialog(){
-      this.openDialog=true;
+  methods: {
+    onOpenDialog() {
+      this.openDialog = true;
     },
-    getBookID(BID){
-      this.bookIDList=BID;
+    getBookID(BID) {
+      this.bookIDList = BID;
       console.log(BID);
-    }
+    },
   },
-  async mounted(){
-    if(!this.username){
-      this.$router.push({name:'login'})
+  async mounted() {
+
+    if (!this.username) {
+      this.$router.push({ name: "login" });
     }
-    let resultCustomers = await axios.get("http://localhost:3000/customers");
+    let resultCustomers = await axios
+      .get("http://localhost:3000/customers", { timeout: 2000 })
+      .catch((error) => {
+        console.log(error);
+      });
     this.customers = resultCustomers.data;
-  }
+  },
 };
 </script>
 
 <style scoped>
-.memDate{
+.memDate {
   padding-left: 28px;
 }
 </style>
