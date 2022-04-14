@@ -6,6 +6,7 @@
 </template>
 
 <script>
+// import logger from './logger';
 export default {
   name: "App",
 };
