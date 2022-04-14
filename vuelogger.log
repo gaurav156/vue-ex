@@ -1,0 +1,62 @@
+{"level":"error","message":"error"}
+{"level":"warn","message":"warn"}
+{"level":"info","message":"info"}
+{"level":"verbose","message":"verbose"}
+{"level":"debug","message":"debug"}
+{"level":"info","message":"warn information"}
+{"level":"error","message":"error"}
+{"level":"warn","message":"warn"}
+{"level":"info","message":"info"}
+{"level":"verbose","message":"verbose"}
+{"level":"debug","message":"debug"}
+{"level":"info","message":"warn information"}
+error - error
+warn - warn
+info - info
+verbose - verbose
+debug - debug
+info - warn information
+error - error information
+warn - warn information
+info - info information
+verbose - verbose information
+debug - debug information
+info - warn information
+ERROR - error information
+WARN - warn information
+INFO - info information
+VERBOSE - verbose information
+DEBUG - debug information
+INFO - warn information
+2022-04-14T05:51:16.720Z - [ERROR] - error information
+2022-04-14T05:51:16.721Z - [WARN] - warn information
+2022-04-14T05:51:16.723Z - [INFO] - info information
+2022-04-14T05:51:16.724Z - [INFO] - warn information
+11:27:55 - [ERROR] - error information
+11:27:55 - [WARN] - warn information
+11:27:55 - [INFO] - info information
+11:27:55 - [INFO] - warn information
+14:04:22Y 11:29:01 - [ERROR] - error information
+14:04:22Y 11:29:01 - [WARN] - warn information
+14:04:22Y 11:29:01 - [INFO] - info information
+14:04:22Y 11:29:01 - [INFO] - warn information
+14-04-2022 11:31:09 - [ERROR] - error information
+14-04-2022 11:31:10 - [WARN] - warn information
+14-04-2022 11:31:10 - [INFO] - info information
+14-04-2022 11:31:10 - [INFO] - warn information
+14-04-2022 11:32:38 - [[31MERROR[39M] - error information
+14-04-2022 11:32:38 - [[33MWARN[39M] - warn information
+14-04-2022 11:32:38 - [[32MINFO[39M] - info information
+14-04-2022 11:32:38 - [[32MINFO[39M] - warn information
+14-04-2022 11:33:58 - [ERROR] - error information
+14-04-2022 11:33:58 - [WARN] - warn information
+14-04-2022 11:33:58 - [INFO] - info information
+14-04-2022 11:33:58 - [INFO] - warn information
+14-04-2022 11:38:35 - [ERROR] - error information
+14-04-2022 11:38:35 - [WARN] - warn information
+14-04-2022 11:38:35 - [INFO] - info information
+14-04-2022 11:38:35 - [INFO] - warn information
+14-04-2022 12:06:17 - [ERROR] - error information
+14-04-2022 12:06:17 - [WARN] - warn information
+14-04-2022 12:06:17 - [INFO] - info information
+14-04-2022 12:06:17 - [INFO] - warn information
