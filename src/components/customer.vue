@@ -89,7 +89,7 @@ export default {
       this.$router.push({ name: "login" });
     }
     let resultCustomers = await axios
-      .get("http://localhost:3000/customers", { timeout: 2000 })
+      .get("http://localhost:3000/marklogic/customers", { timeout: 2000 })
       .catch((error) => {
         console.log(error);
       });

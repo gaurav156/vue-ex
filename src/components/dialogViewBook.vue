@@ -39,7 +39,7 @@ export default {
     //     console.log(error);
     //   });
     let resultBook = await axios
-      .get("http://localhost:3000/books", { timeout: 2000 })
+      .get("http://localhost:3000/marklogic/books", { timeout: 2000 })
       .catch((error) => {
         console.log(error);
       });
