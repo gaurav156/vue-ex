@@ -4,7 +4,6 @@
     <!-- <p v-if="username" class="welcomeMsg">Hi {{ username }}, Welcome!</p> -->
     <h1>Books</h1>
     <hr />
-    <!-- <p>List of Books coming Soon...</p> -->
     <p>List of Books:</p>
     <div class="tableDiv">
       <table class="table">
@@ -48,7 +47,7 @@
 
 <script>
 import headerLib from "./header.vue";
-import axios from "axios";
+import axiosInvocation from "./axioInvocation.js";
 import dialogViewCustomer from "./dialogViewCustomer.vue";
 
 export default {
@@ -61,22 +60,8 @@ export default {
     return {
       username: localStorage.getItem("user-info"),
       books: [],
-      // books: [
-      //   {
-      //     bookID: '1',
-      //     bookTitle: 'Harry Potter and Dungeo',
-      //     issnNo: '12112',
-      //     customerID: ['1','2']
-      //   },
-      //   {
-      //     bookID: '2',
-      //     bookTitle: 'Harry Potter and Dumbledore',
-      //     issnNo: '23232',
-      //     customerID: ['2']
-      //   }
-      // ],
       openDialog: false,
-      customerIDList: [],
+      customerIDList: String,
     };
   },
   methods: {
@@ -93,12 +78,17 @@ export default {
     if (!this.username) {
       this.$router.push({ name: "login" });
     }
-    let resultBooks = await axios
-      .get("http://localhost:3000/marklogic/books", { timeout: 2000 })
-      .catch((error) => {
-        console.log(error);
-      });
-    this.books = resultBooks.data;
+    // let resultBooks = await axios
+    //   .get("http://localhost:3000/marklogic/books", { timeout: 2000 })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    // this.books = resultBooks.data;
+
+    let result = await axiosInvocation.methods.axiosInvoc(
+      "http://localhost:3000/marklogic/books"
+    );
+    this.books = result;
 
         // axios
         //   .post("http://mysite.com/user", { name: "John" }, { timeout: 2 })
@@ -108,22 +98,8 @@ export default {
         //   .catch((error) => {
         //     console.log(error);
         //   });
-        
-    // console.log(resultBooks.status);
+  }
 
-    // .then((response) => {
-    //     this.books = resultBooks.data;
-    //     console.log(response);
-    //   })
-
-  //    .catch(function (error) {
-  //   if (error.response) {
-  //     console.log(error.response.data);
-  //     console.log(error.response.status);
-  //     console.log(error.response.headers);
-  //   }
-  // });
-  },
 }
 </script>
 

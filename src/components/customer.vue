@@ -43,7 +43,7 @@
 
 <script>
 import headerLib from "./header.vue";
-import axios from "axios";
+import axiosInvocation from "./axioInvocation.js";
 import dialogViewBook from "./dialogViewBook.vue";
 
 export default {
@@ -56,22 +56,8 @@ export default {
     return {
       username: localStorage.getItem("user-info"),
       customers: [],
-      // customers: [
-      //   {
-      //     customerID: '1',
-      //     customerName: 'Somnath',
-      //     membershipDate: '01-Dec-2020',
-      //     bookID: ['1']
-      //   },
-      //   {
-      //     customerID: '2',
-      //     customerName: 'Pravin',
-      //     membershipDate: '01-Dec-2022',
-      //     bookID: ['1','2']
-      //   }
-      // ],
       openDialog: false,
-      bookIDList: [],
+      bookIDList: String,
     };
   },
   methods: {
@@ -88,12 +74,17 @@ export default {
     if (!this.username) {
       this.$router.push({ name: "login" });
     }
-    let resultCustomers = await axios
-      .get("http://localhost:3000/marklogic/customers", { timeout: 2000 })
-      .catch((error) => {
-        console.log(error);
-      });
-    this.customers = resultCustomers.data;
+    // let resultCustomers = await axios
+    //   .get("http://localhost:3000/marklogic/customers", { timeout: 2000 })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    // this.customers = resultCustomers.data;
+
+    let result = await axiosInvocation.methods.axiosInvoc(
+      "http://localhost:3000/marklogic/customers"
+    );
+    this.customers = result;
   },
 };
 </script>

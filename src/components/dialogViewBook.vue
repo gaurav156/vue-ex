@@ -1,7 +1,6 @@
 <template>
   <div class="backdrop"></div>
   <div class="dialog">
-    <!-- <p>Hi, it is dialog box!</p> -->
     <slot></slot>
     <table class="dialogTable">
       <thead>
@@ -19,12 +18,12 @@
 </template>
 
 <script>
-import axios from "axios";
+import axiosInvocation from "./axioInvocation.js";
 export default {
   name: "dialogViewBook",
   props: {
-    bookIDListDialog: [],
-    customerIDListDialog: [],
+    bookIDListDialog: String,
+    customerIDListDialog: String,
   },
   data() {
     return {
@@ -34,26 +33,26 @@ export default {
   },
 
   async mounted() {
-    // .get("http://localhost:3000/books", { timeout: 2000 })
+
+    // let resultBook = await axios
+    //   .get("http://localhost:3000/marklogic/books", { timeout: 2000 })
     //   .catch((error) => {
     //     console.log(error);
     //   });
-    let resultBook = await axios
-      .get("http://localhost:3000/marklogic/books", { timeout: 2000 })
-      .catch((error) => {
-        console.log(error);
-      });
-    this.displayTableBook = resultBook.data;
+    // this.displayTableBook = resultBook.data;
+
+    let result = await axiosInvocation.methods.axiosInvoc(
+      "http://localhost:3000/marklogic/books"
+    );
+    this.displayTableBook = result;
+
     for (var a = 0; a < this.displayTableBook.length; a++) {
       for (var b = 0; b < this.bookIDListDialog.length; b++) {
         if (this.bookIDListDialog[b] === this.displayTableBook[a].bookID) {
           this.resultFinalBook.push(this.displayTableBook[a].bookTitle);
-          console.log(this.displayTableBook[a].bookID);
         }
       }
     }
-
-    console.log(this.resultFinalBook);
   },
 };
 </script>

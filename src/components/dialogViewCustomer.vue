@@ -1,7 +1,6 @@
 <template>
   <div class="backdrop"></div>
   <div class="dialog">
-    <!-- <p>Hi, it is dialog box!</p> -->
     <slot></slot>
     <div>
       <table class="dialogTable">
@@ -21,12 +20,12 @@
 </template>
 
 <script>
-import axios from "axios";
+import axiosInvocation from "./axioInvocation.js";
 export default {
   name: "dialogView",
   props: {
-    bookIDListDialog: [],
-    customerIDListDialog: [],
+    bookIDListDialog: String,
+    customerIDListDialog: String,
   },
   data() {
     return {
@@ -36,25 +35,25 @@ export default {
   },
 
   async mounted() {
-    let resultCustomer = await axios
-      .get("http://localhost:3000/marklogic/customers", { timeout: 2000 })
-      .catch((error) => {
-        console.log(error);
-      });
-    this.displayTableCustomer = resultCustomer.data;
+    // let resultCustomer = await axios
+    //   .get("http://localhost:3000/marklogic/customers", { timeout: 2000 })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    // this.displayTableCustomer = resultCustomer.data;
+
+    let result = await axiosInvocation.methods.axiosInvoc(
+      "http://localhost:3000/marklogic/customers"
+    );
+    this.displayTableCustomer = result;
+
     for (var i = 0; i < this.displayTableCustomer.length; i++) {
       for (var j = 0; j < this.customerIDListDialog.length; j++) {
-        if (
-          this.customerIDListDialog[j] ===
-          this.displayTableCustomer[i].customerID
-        ) {
-          this.resultFinalCustomer.push(
-            this.displayTableCustomer[i].customerName
-          );
+        if (this.customerIDListDialog[j] === this.displayTableCustomer[i].customerID) {
+          this.resultFinalCustomer.push(this.displayTableCustomer[i].customerName);
         }
       }
     }
-    console.log(this.resultFinalCustomer);
   },
 };
 </script>

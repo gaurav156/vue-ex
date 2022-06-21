@@ -1,9 +1,8 @@
-// import Vue from 'vue'
 import {createWebHistory, createRouter} from 'vue-router'
-//import homeLib from '@/components/home.vue'
 import bookLib from '@/components/book.vue'
 import customerLib from '@/components/customer.vue';
 import loginLib from '@/components/login.vue';
+import testAxios from '@/components/testAxios.vue';
 
 const routes=[
     {
@@ -21,6 +20,11 @@ const routes=[
         path: '/login',
         component: loginLib
     },
+    {
+        name: 'testAxios',
+        path: '/testAxios',
+        component: testAxios
+    }
 ];
 
 const router= createRouter(
@@ -30,26 +34,4 @@ const router= createRouter(
     }
 );
 
-// Vue.use(Router)
-
 export default router;
-
-// ({
-//   routes: [
-//     {
-//       path: '/',
-//       name: 'home',
-//       component: home
-//     },
-//     {
-//         path: '/book',
-//         name: 'book',
-//         component: book
-//     },
-//     {
-//         path: '/customer',
-//         name: 'customer',
-//         component: customer
-//     }
-//   ]
-// })
