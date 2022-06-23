@@ -22,37 +22,35 @@ import axiosInvocation from "./axioInvocation.js";
 export default {
   name: "dialogViewBook",
   props: {
-    bookIDListDialog: String,
-    customerIDListDialog: String,
+    bookIDListDialog: {},
   },
   data() {
     return {
-      displayTableBook: [],
       resultFinalBook: [],
     };
   },
 
   async mounted() {
 
-    // let resultBook = await axios
-    //   .get("http://localhost:3000/marklogic/books", { timeout: 2000 })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-    // this.displayTableBook = resultBook.data;
+    // let result = await axiosInvocation.methods.axiosInvoc(
+    //   "http://localhost:3000/marklogic/books"
+    // );
+    // this.displayTableBook = result;
 
-    let result = await axiosInvocation.methods.axiosInvoc(
-      "http://localhost:3000/marklogic/books"
-    );
-    this.displayTableBook = result;
+    // for (var a = 0; a < this.displayTableBook.length; a++) {
+    //   for (var b = 0; b < this.bookIDListDialog.length; b++) {
+    //     if (this.bookIDListDialog[b] === this.displayTableBook[a].bookID) {
+    //       this.resultFinalBook.push(this.displayTableBook[a].bookTitle);
+    //     }
+    //   }
+    // }
 
-    for (var a = 0; a < this.displayTableBook.length; a++) {
-      for (var b = 0; b < this.bookIDListDialog.length; b++) {
-        if (this.bookIDListDialog[b] === this.displayTableBook[a].bookID) {
-          this.resultFinalBook.push(this.displayTableBook[a].bookTitle);
-        }
-      }
+    for(var a = 0; a < this.bookIDListDialog.length; a++){
+      let res = await axiosInvocation.methods.axiosInvoc(
+      "http://localhost:3000/marklogic/books/"+this.bookIDListDialog[a]);
+      this.resultFinalBook.push(res[0].bookTitle)
     }
-  },
+
+  }
 };
 </script>

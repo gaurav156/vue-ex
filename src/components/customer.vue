@@ -66,7 +66,7 @@ export default {
     },
     getBookID(BID) {
       this.bookIDList = BID;
-      console.log(BID);
+      // console.log(BID);
     },
   },
   async mounted() {
@@ -74,12 +74,6 @@ export default {
     if (!this.username) {
       this.$router.push({ name: "login" });
     }
-    // let resultCustomers = await axios
-    //   .get("http://localhost:3000/marklogic/customers", { timeout: 2000 })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-    // this.customers = resultCustomers.data;
 
     let result = await axiosInvocation.methods.axiosInvoc(
       "http://localhost:3000/marklogic/customers"

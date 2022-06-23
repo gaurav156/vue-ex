@@ -1,7 +1,6 @@
 <template>
   <headerLib />
   <div class="divP">
-    <!-- <p v-if="username" class="welcomeMsg">Hi {{ username }}, Welcome!</p> -->
     <h1>Books</h1>
     <hr />
     <p>List of Books:</p>
@@ -70,7 +69,7 @@ export default {
     },
     getCustomerID(CID) {
       this.customerIDList = CID;
-      console.log(CID);
+      // console.log(CID);
     },
   },
   async mounted() {
@@ -78,26 +77,12 @@ export default {
     if (!this.username) {
       this.$router.push({ name: "login" });
     }
-    // let resultBooks = await axios
-    //   .get("http://localhost:3000/marklogic/books", { timeout: 2000 })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-    // this.books = resultBooks.data;
 
     let result = await axiosInvocation.methods.axiosInvoc(
       "http://localhost:3000/marklogic/books"
     );
     this.books = result;
 
-        // axios
-        //   .post("http://mysite.com/user", { name: "John" }, { timeout: 2 })
-        //   .then((response) => {
-        //     console.log(response);
-        //   })
-        //   .catch((error) => {
-        //     console.log(error);
-        //   });
   }
 
 }
