@@ -12,6 +12,7 @@
             <td class="tableHeaderData" id="bookTitle">Book Title</td>
             <td class="justifyCenter tableHeaderData">ISSN No.</td>
             <td class="tableHeaderData issn">Customer</td>
+            <td class="justifyCenter tableHeaderData">Action</td>
           </tr>
         </thead>
         <tbody>
@@ -30,6 +31,11 @@
               >
                 View
               </button>
+            </td>
+            <td class="tableBodyData">
+              <router-link :to="'/book/update/' + item.bookID" class="updateButton justifyCenter"
+                >Update</router-link
+              >
             </td>
           </tr>
         </tbody>
@@ -69,11 +75,9 @@ export default {
     },
     getCustomerID(CID) {
       this.customerIDList = CID;
-      // console.log(CID);
     },
   },
   async mounted() {
-    
     if (!this.username) {
       this.$router.push({ name: "login" });
     }
@@ -82,10 +86,8 @@ export default {
       "http://localhost:3000/marklogic/books"
     );
     this.books = result;
-
-  }
-
-}
+  },
+};
 </script>
 
 <style scoped>
@@ -94,5 +96,18 @@ export default {
 }
 #bookTitle {
   padding-left: 80px;
+}
+.updateButton{
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    background-color: rgb(0, 102, 255);
+    color: white;
+    border: none;
+    font-size: medium;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Noto Sans Display", sans-serif;
+    text-decoration: none;
 }
 </style>

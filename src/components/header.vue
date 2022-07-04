@@ -1,7 +1,7 @@
 <template>
   <div class="username">
     <p>Hi {{ username }}, Welcome!</p>
-    <p id="slash">|</p>
+    <p id="slash" class="nav-element">|</p>
     <a v-on:click="logout" href="#" class="nav-element">Logout</a>
   </div>
   <header>

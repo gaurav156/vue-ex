@@ -5,7 +5,7 @@ name : "axiosInvocation",
 
 methods : {
     async axiosInvoc(uri){
-        let response = await axios.get(uri, { timeout: 2000 });
+        let response = await axios.get(uri, { timeout: 5000 });
         return response.data;
     }
 }

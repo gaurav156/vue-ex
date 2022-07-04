@@ -119,8 +119,8 @@ export default {
           this.errorAlert = true;
         }
       }
-      this.$logger.saveToLog("aLogFile.txt", "This is a log file");
-      this.$logger.warn("heahnca");
+      // this.$logger.saveToLog("aLogFile.txt", "This is a log file");
+      // this.$logger.warn("heahnca");
     },
   },
 };
