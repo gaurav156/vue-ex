@@ -4,6 +4,7 @@ import customerLib from '@/components/customer.vue';
 import loginLib from '@/components/login.vue';
 import testAxios from '@/components/testAxios.vue';
 import updateBook from '@/components/updateBook.vue';
+import updateCustomer from '@/components/updateCustomer.vue';
 
 const routes=[
     {
@@ -30,6 +31,11 @@ const routes=[
         name: 'updateBook',
         path: '/book/update/:bookID',
         component: updateBook
+    },
+    {
+        name: 'updateCustomer',
+        path: '/customer/update/:customerID',
+        component: updateCustomer
     },
 ];
 

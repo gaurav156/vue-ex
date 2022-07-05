@@ -11,7 +11,8 @@
             <td class="tableHeaderData">Customer ID</td>
             <td class="tableHeaderData">Customer Name</td>
             <td class="tableHeaderData">Membership Date</td>
-            <td class="justifyCenter tableHeaderData">Books</td>
+            <td class="tableHeaderData issn">Books</td>
+            <td class="justifyCenter tableHeaderData">Action</td>
           </tr>
         </thead>
         <tbody>
@@ -30,6 +31,11 @@
               >
                 View
               </button>
+            </td>
+            <td class="tableBodyData">
+              <router-link :to="'/customer/update/' + item.customerID" class="updateButton justifyCenter"
+                >Update</router-link
+              >
             </td>
           </tr>
         </tbody>
@@ -86,5 +92,21 @@ export default {
 <style scoped>
 .memDate {
   padding-left: 28px;
+}
+.updateButton{
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    background-color: rgb(0, 102, 255);
+    color: white;
+    border: none;
+    font-size: medium;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Noto Sans Display", sans-serif;
+    text-decoration: none;
+}
+.issn {
+  padding-left: 35px;
 }
 </style>

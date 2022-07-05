@@ -127,7 +127,7 @@ li {
 }
 .username {
   top: 10px px;
-  position: fixed;
+  position: absolute;
   right: 10px;
   color: white;
   padding-top: 15px;
