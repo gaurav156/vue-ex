@@ -137,11 +137,16 @@ li {
 h1 {
   color: rgb(0, 61, 153);
   padding: 10px;
+  cursor: default;
 }
 p {
   padding: 10px;
 }
 table td {
   padding: 10px;
+  cursor: default;
+}
+span{
+  cursor: default;
 }
 </style>

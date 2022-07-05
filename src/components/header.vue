@@ -1,6 +1,6 @@
 <template>
   <div class="username">
-    <p>Hi {{ username }}, Welcome!</p>
+    <p id="userName">Hi {{ username }}, Welcome!</p>
     <p id="slash" class="nav-element">|</p>
     <a v-on:click="logout" href="#" class="nav-element">Logout</a>
   </div>
@@ -15,12 +15,6 @@
             >Customers</router-link
           >
         </li>
-        <!-- <li>
-          <a v-on:click="logout" href="#" class="nav-element">Logout</a>
-        </li> -->
-        <!-- <li>
-          <router-link class="nav-element" to="/login">Login</router-link>
-        </li> -->
       </ul>
     </nav>
   </header>
@@ -46,5 +40,8 @@ export default {
 #slash{
     font-size: x-large;
     padding-top: 1.5px;
+}
+#userName{
+  cursor: default;
 }
 </style>

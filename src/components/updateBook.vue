@@ -125,6 +125,7 @@ h2 {
   color: rgb(0, 102, 255);
   margin-bottom: 15px;
   margin-top: 15px;
+  cursor: default;
 }
 p {
   padding: 10px;
@@ -186,17 +187,18 @@ div {
 
 .inputLabel {
   display: flex;
-  padding-block: 5px;
+  padding-block: 4px;
   padding-inline: 20px;
   color: black;
-  font-size: 90%;
+  font-size: 83%;
+  cursor: pointer;
 }
-
 .label {
   padding-top: 10px;
 }
 .checkbox {
   margin-right: 15px;
+  cursor: pointer;
 }
 hr {
   margin-left: 20px;

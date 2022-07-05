@@ -5,6 +5,8 @@ import loginLib from '@/components/login.vue';
 import testAxios from '@/components/testAxios.vue';
 import updateBook from '@/components/updateBook.vue';
 import updateCustomer from '@/components/updateCustomer.vue';
+import addBook from '@/components/addBook.vue';
+import addCustomer from '@/components/addCustomer.vue';
 
 const routes=[
     {
@@ -37,6 +39,16 @@ const routes=[
         path: '/customer/update/:customerID',
         component: updateCustomer
     },
+    {
+        name: 'addBook',
+        path: '/book/add',
+        component: addBook
+    },
+    {
+        name: 'addCustomer',
+        path: '/customer/add',
+        component: addCustomer
+    }
 ];
 
 const router= createRouter(

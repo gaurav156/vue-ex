@@ -1,11 +1,11 @@
 <template>
   <headerLib />
   <div class="formCompo">
-    <h2>Update Customer</h2>
+    <h2>Add Customer</h2>
     <hr />
     <div class="inputDiv">
       <label for="customerID" class="label"
-        >Book ID :
+        >Customer ID :
         <input
           class="inputText"
           type="text"
@@ -16,7 +16,7 @@
       </label>
 
       <label for="customerName" class="label"
-        >Book Title :
+        >Customer Name :
         <input
           class="inputText"
           type="text"
@@ -27,7 +27,7 @@
       </label>
 
       <label for="membershipDate" class="label"
-        >Issn No. :
+        >Membership Date :
         <input
           class="inputText"
           type="text"
@@ -38,7 +38,7 @@
       </label>
 
       <span class="label"
-        >Customers :
+        >Books :
         <label
           :for="item.bookID"
           v-for="item in bookData"
@@ -50,16 +50,16 @@
             :id="item.bookID"
             name="bookID"
             :value="item.bookID"
-            v-model="bookList"
+            v-model="customers.bookID"
             class="checkbox"
           />{{ item.bookID + " - " + item.bookTitle }}</label
         >
       </span>
 
-      <button type="button" @click.prevent="updateCustomer" class="submitBtn">
-        Update
+      <button type="button" @click.prevent="addCustomer" class="submitBtn">
+        Add
       </button>
-      <router-link to="/customer" class="cancelBtn"> Cancel </router-link>
+      <router-link to="/" class="cancelBtn"> Cancel </router-link>
     </div>
   </div>
 </template>
@@ -70,7 +70,7 @@ import headerLib from "./header.vue";
 import axiosInvocation from "./axioInvocation.js";
 
 export default {
-  name: "updateCustomer",
+  name: "addCustomer",
   components: {
     headerLib,
   },
@@ -87,13 +87,16 @@ export default {
     };
   },
   methods: {
-    async updateCustomer() {
-      const result = await axios.post("http://localhost:3000/marklogic/customers", {
-        customerID: this.customers.customerID,
-        customerName: this.customers.customerName,
-        membershipDate: this.customers.membershipDate,
-        bookID: this.bookList,
-      });
+    async addCustomer() {
+      const result = await axios.post(
+        "http://localhost:3000/marklogic/customers",
+        {
+          customerID: this.customers.customerID,
+          customerName: this.customers.customerName,
+          membershipDate: this.customers.membershipDate,
+          bookID: this.customers.bookID,
+        }
+      );
       if (result.status == 200) {
         this.$router.push({ name: "customer" });
       }
@@ -105,11 +108,11 @@ export default {
       this.$router.push({ name: "login" });
     }
 
-    let result = await axiosInvocation.methods.axiosInvoc(
-      "http://localhost:3000/marklogic/customers/" + this.$route.params.customerID
-    );
-    this.customers = result[0];
-    this.bookList = this.customers.bookID;
+    // let result = await axiosInvocation.methods.axiosInvoc(
+    //   "http://localhost:3000/marklogic/books/" + this.$route.params.bookID
+    // );
+    // this.books = result[0];
+    // this.customerList = this.books.customerID;
 
     let books = await axiosInvocation.methods.axiosInvoc(
       "http://localhost:3000/marklogic/books"

@@ -33,13 +33,18 @@
               </button>
             </td>
             <td class="tableBodyData">
-              <router-link :to="'/book/update/' + item.bookID" class="updateButton justifyCenter"
+              <router-link
+                :to="'/book/update/' + item.bookID"
+                class="updateButton justifyCenter"
                 >Update</router-link
               >
             </td>
           </tr>
         </tbody>
       </table>
+    </div>
+    <div>
+      <router-link :to="'/book/add'" class="addButton">Add Book</router-link>
     </div>
   </div>
   <dialogViewCustomer
@@ -97,17 +102,46 @@ export default {
 #bookTitle {
   padding-left: 80px;
 }
-.updateButton{
-    height: 100%;
-    padding: 0px;
-    margin: 0px;
-    background-color: rgb(0, 102, 255);
-    color: white;
-    border: none;
-    font-size: medium;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: "Noto Sans Display", sans-serif;
-    text-decoration: none;
+.updateButton {
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  background-color: rgb(0, 102, 255);
+  color: white;
+  border: none;
+  font-size: medium;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Noto Sans Display", sans-serif;
+  text-decoration: none;
+}
+.updateButton:hover {
+  border-color: 1px solid blue;
+  background-color: rgb(0, 61, 153);
+}
+.addButton {
+  justify-self: center;
+  border-color: lightblue;
+  font-weight: bold;
+  height: 30px;
+  margin: 0px;
+  background-color: rgb(0, 102, 255);
+  color: white;
+  font-size: medium;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Noto Sans Display", sans-serif;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  width: 8%;
+  padding-top: 8px;
+  position: absolute;
+  margin-left: 26%;
+  margin-top: 1.5%;
+}
+.addButton:hover {
+  background-color: lightblue;
+  color: rgb(0, 102, 255);
 }
 </style>
