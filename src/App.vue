@@ -42,7 +42,7 @@ li {
   border-radius: 5px;
 }
 .justifyCenter {
-  display: flex;
+  /* display: flex; */
   justify-content: center;
 }
 .closeButton {
@@ -64,6 +64,7 @@ li {
   padding: 15px;
   min-width: 100px;
   border-radius: 5px;
+  text-align: center;
 }
 .tableBodyData {
   background-color: rgb(128, 179, 255);
@@ -141,12 +142,86 @@ h1 {
 }
 p {
   padding: 10px;
+  cursor: default;
 }
 table td {
   padding: 10px;
   cursor: default;
 }
-span{
+span {
   cursor: default;
+}
+.alignCenter {
+  text-align: center;
+}
+
+.updateButton {
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  background-color: rgb(0, 102, 255);
+  color: white;
+  border: none;
+  font-size: medium;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Noto Sans Display", sans-serif;
+  text-decoration: none;
+  padding-inline: 15px;
+  margin-right: 10px;
+}
+.updateButton:hover {
+  border-color: 1px solid blue;
+  background-color: rgb(0, 61, 153);
+}
+.addButton {
+  justify-self: center;
+  border-color: lightblue;
+  font-weight: bold;
+  height: 30px;
+  margin: 0px;
+  background-color: rgb(0, 102, 255);
+  color: white;
+  font-size: medium;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Noto Sans Display", sans-serif;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  width: 8%;
+  padding-top: 8px;
+  position: absolute;
+  margin-left: 26%;
+  margin-top: 1.5%;
+}
+.addButton:hover {
+  /* background-color: lightblue;
+  color: rgb(0, 102, 255); */
+  border-color: 1px solid blue;
+  background-color: rgb(0, 61, 153);
+}
+.deleteButton {
+  height: 100%;
+  width: 80px;
+  padding: 0px;
+  margin: 0px;
+  color: white;
+  background-color: rgb(195, 36, 36);
+  border-color: rgb(219, 34, 34);
+  border: none;
+  font-size: medium;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Noto Sans Display", sans-serif;
+  text-decoration: none;
+}
+.deleteButton:hover {
+  background-color: rgb(251, 189, 189);
+  color: rgb(195, 36, 36);
+}
+.action {
+  width: 175px;
+  text-align: center;
 }
 </style>

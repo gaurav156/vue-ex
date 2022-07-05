@@ -9,17 +9,17 @@
         <thead>
           <tr>
             <td class="justifyCenter tableHeaderData">Book ID</td>
-            <td class="tableHeaderData" id="bookTitle">Book Title</td>
+            <td class="tableHeaderData">Book Title</td>
             <td class="justifyCenter tableHeaderData">ISSN No.</td>
             <td class="tableHeaderData issn">Customer</td>
-            <td class="justifyCenter tableHeaderData">Action</td>
+            <td class="justifyCenter tableHeaderData action">Action</td>
           </tr>
         </thead>
         <tbody>
           <tr v-for="item in books" :key="item.bookID">
-            <td class="justifyCenter tableBodyData">{{ item.bookID }}</td>
+            <td class="justifyCenter tableBodyData alignCenter">{{ item.bookID }}</td>
             <td class="tableBodyData">{{ item.bookTitle }}</td>
-            <td class="tableBodyData issn">{{ item.issnNo }}</td>
+            <td class="tableBodyData alignCenter">{{ item.issnNo }}</td>
             <td class="justifyCenter tableBodyData">
               <button
                 type="button"
@@ -38,6 +38,12 @@
                 class="updateButton justifyCenter"
                 >Update</router-link
               >
+              <button
+                v-on:click="deleteBook(item.bookID)"
+                class="deleteButton justifyCenter"
+              >
+                Delete
+              </button>
             </td>
           </tr>
         </tbody>
@@ -81,67 +87,29 @@ export default {
     getCustomerID(CID) {
       this.customerIDList = CID;
     },
-  },
-  async mounted() {
-    if (!this.username) {
-      this.$router.push({ name: "login" });
-    }
+    async loadData() {
+      if (!this.username) {
+        this.$router.push({ name: "login" });
+      }
 
-    let result = await axiosInvocation.methods.axiosInvoc(
-      "http://localhost:3000/marklogic/books"
-    );
-    this.books = result;
+      let result = await axiosInvocation.methods.axiosInvoc(
+        "http://localhost:3000/marklogic/books"
+      );
+      this.books = result;
+    },
+    async deleteBook(bookID) {
+      let response = await axiosInvocation.methods.deleteBook(bookID);
+      if (response.status == 200) {
+        this.loadData();
+      }
+    },
+  },
+  mounted() {
+    this.loadData();
   },
 };
 </script>
 
 <style scoped>
-.issn {
-  padding-left: 35px;
-}
-#bookTitle {
-  padding-left: 80px;
-}
-.updateButton {
-  height: 100%;
-  padding: 0px;
-  margin: 0px;
-  background-color: rgb(0, 102, 255);
-  color: white;
-  border: none;
-  font-size: medium;
-  border-radius: 5px;
-  cursor: pointer;
-  font-family: "Noto Sans Display", sans-serif;
-  text-decoration: none;
-}
-.updateButton:hover {
-  border-color: 1px solid blue;
-  background-color: rgb(0, 61, 153);
-}
-.addButton {
-  justify-self: center;
-  border-color: lightblue;
-  font-weight: bold;
-  height: 30px;
-  margin: 0px;
-  background-color: rgb(0, 102, 255);
-  color: white;
-  font-size: medium;
-  border-radius: 5px;
-  cursor: pointer;
-  font-family: "Noto Sans Display", sans-serif;
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-  width: 8%;
-  padding-top: 8px;
-  position: absolute;
-  margin-left: 26%;
-  margin-top: 1.5%;
-}
-.addButton:hover {
-  background-color: lightblue;
-  color: rgb(0, 102, 255);
-}
+
 </style>

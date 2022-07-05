@@ -1,7 +1,7 @@
 <template>
   <div class="username">
     <p id="userName">Hi {{ username }}, Welcome!</p>
-    <p id="slash" class="nav-element">|</p>
+    <p id="slash">|</p>
     <a v-on:click="logout" href="#" class="nav-element">Logout</a>
   </div>
   <header>
@@ -40,6 +40,7 @@ export default {
 #slash{
     font-size: x-large;
     padding-top: 1.5px;
+    cursor: default;
 }
 #userName{
   cursor: default;
