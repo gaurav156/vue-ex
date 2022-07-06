@@ -59,7 +59,7 @@
       <button type="button" @click.prevent="addCustomer" class="submitBtn">
         Add
       </button>
-      <router-link to="/" class="cancelBtn"> Cancel </router-link>
+      <router-link to="/customer" class="cancelBtn"> Cancel </router-link>
     </div>
   </div>
 </template>

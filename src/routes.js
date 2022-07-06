@@ -2,6 +2,7 @@ import {createWebHistory, createRouter} from 'vue-router'
 import bookLib from '@/components/book.vue'
 import customerLib from '@/components/customer.vue';
 import loginLib from '@/components/login.vue';
+import signUpLib from '@/components/signUp.vue';
 import testAxios from '@/components/testAxios.vue';
 import updateBook from '@/components/updateBook.vue';
 import updateCustomer from '@/components/updateCustomer.vue';
@@ -23,6 +24,11 @@ const routes=[
         name: 'login',
         path: '/login',
         component: loginLib
+    },
+    {
+        name: 'signUp',
+        path: '/signup',
+        component: signUpLib
     },
     {
         name: 'testAxios',

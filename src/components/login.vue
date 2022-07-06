@@ -4,11 +4,11 @@
       <h1>Login</h1>
       <div class="inputDiv">
         <label class="inputClass">
-          User Name:
+          Email:
           <input
             type="text"
-            placeholder="Enter Username"
-            v-model.lazy="form.username"
+            placeholder="Enter Email"
+            v-model="form.email"
             ref="username"
             class="inputText"
             id="username"
@@ -26,8 +26,9 @@
           /> </label
         ><br />
         <button v-on:click="login" type="button" class="submitBtn">
-          Submit
+          Login
         </button>
+        <router-link :to="'/signup'" class="routerLink">click here to Register!</router-link>
         <div v-if="this.errorAlert" class="errorAlertClass">
           <p>{{ errorMsg }}</p>
         </div>
@@ -49,7 +50,7 @@ export default {
   data() {
     return {
       form: {
-        username: "",
+        email: "",
         password: "",
       },
       user: [],
@@ -65,19 +66,19 @@ export default {
       this.$refs.password.style.borderColor = "rgb(0, 102, 255)";
 
       if (
-        (this.form.username === "" || this.form.username.length === 0) &
+        (this.form.email === "" || this.form.email.length === 0) &
         (this.form.password === "" || this.form.password.length === 0)
       ) {
-        this.error.push("username");
+        this.error.push("email");
         this.error.push("password");
-      } else if (this.form.username === "" || this.form.username.length === 0) {
-        this.error.push("username");
+      } else if (this.form.email === "" || this.form.email.length === 0) {
+        this.error.push("email");
       } else if (this.form.password === "" || this.form.password.length === 0) {
         this.error.push("password");
       } else {
         let response = await axioInvocation.methods.axiosInvoc(
           "http://localhost:3000/marklogic/users/" +
-            this.form.username +
+            this.form.email +
             "/" +
             this.form.password
         );
@@ -85,42 +86,42 @@ export default {
       }
 
       if (
-        (this.form.username !== this.user.email) &
+        (this.form.email !== this.user.email) &
         (this.form.password !== this.user.password)
       ) {
-        this.error.push("invalidUsername");
+        this.error.push("invalidEmail");
         this.error.push("invalidPassword");
-      } else if (this.form.username !== this.user.email) {
-        this.error.push("invalidUsername");
+      } else if (this.form.email !== this.user.email) {
+        this.error.push("invalidEmail");
       } else if (this.form.password !== this.user.password) {
         this.error.push("invalidPassword");
       }
 
       if (this.error.length === 0) {
-        localStorage.setItem("user-info", this.form.username);
+        localStorage.setItem("user-info", this.user.firstName);
         this.$router.push({ name: "book" });
       } else if (
-        this.error.includes("username") & this.error.includes("password")
+        this.error.includes("email") & this.error.includes("password")
       ) {
         this.$refs.username.style.borderColor = "red";
         this.$refs.password.style.borderColor = "red";
-        this.errorMsg = "Error: Enter Username & Password";
+        this.errorMsg = "Error: Enter Email & Password";
         this.errorAlert = true;
-      } else if (this.error.includes("username")) {
+      } else if (this.error.includes("email")) {
         this.$refs.username.style.borderColor = "red";
-        this.errorMsg = "Error: Enter Username";
+        this.errorMsg = "Error: Enter Email";
         this.errorAlert = true;
       } else if (this.error.includes("password")) {
         this.$refs.password.style.borderColor = "red";
         this.errorMsg = "Error: Enter Password";
         this.errorAlert = true;
       } else if (
-        this.error.includes("invalidUsername") ||
+        this.error.includes("invalidEmail") ||
         this.error.includes("invalidPassword")
       ) {
         this.$refs.username.style.borderColor = "red";
         this.$refs.password.style.borderColor = "red";
-        this.errorMsg = "Error: Invalid Username or Password";
+        this.errorMsg = "Error: Invalid Email or Password";
         this.errorAlert = true;
       }
     },
@@ -209,5 +210,11 @@ div {
   padding: 0px;
   margin: 0px;
   position: fixed;
+}
+.routerLink {
+  font-size: 15px;
+  text-align: center;
+  padding-top: 6px;
+  color: rgb(0, 102, 255);
 }
 </style>
