@@ -4,17 +4,6 @@
       <h1>Sign Up</h1>
       <div class="inputDiv">
         <label class="inputClass">
-          ID:
-          <input
-            type="text"
-            placeholder="Enter ID"
-            v-model="form.id"
-            ref="id"
-            class="inputText"
-            id="id"
-          />
-        </label>
-        <label class="inputClass">
           Email:
           <input
             type="text"
@@ -95,26 +84,21 @@ export default {
   methods: {
     async signUp() {
       this.error = [];
-      this.$refs.id.style.borderColor = "rgb(0, 102, 255)";
       this.$refs.email.style.borderColor = "rgb(0, 102, 255)";
       this.$refs.firstName.style.borderColor = "rgb(0, 102, 255)";
       this.$refs.lastName.style.borderColor = "rgb(0, 102, 255)";
       this.$refs.password.style.borderColor = "rgb(0, 102, 255)";
 
       if (
-        (this.form.id === "" || this.form.id.length === 0) &
         (this.form.email === "" || this.form.email.length === 0) &
         (this.form.firstName === "" || this.form.firstName.length === 0) &
         (this.form.lastName === "" || this.form.lastName.length === 0) &
         (this.form.password === "" || this.form.password.length === 0)
       ) {
-        this.error.push("id");
         this.error.push("email");
         this.error.push("firstName");
         this.error.push("lastName");
         this.error.push("password");
-      } else if (this.form.id === "" || this.form.id.length === 0) {
-        this.error.push("id");
       } else if (this.form.email === "" || this.form.email.length === 0) {
         this.error.push("email");
       } else if (
@@ -142,9 +126,6 @@ export default {
         }
       }
 
-      if (this.error.includes("id")) {
-        this.$refs.id.style.borderColor = "red";
-      }
       if (this.error.includes("email")) {
         this.$refs.email.style.borderColor = "red";
       }
@@ -196,7 +177,7 @@ div {
   display: block;
   padding: 10px;
   margin: auto;
-  margin-top: 5%;
+  margin-top: 3%;
   width: 302px;
   height: fit-content;
   background-color: white;
