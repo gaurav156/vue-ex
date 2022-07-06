@@ -25,8 +25,6 @@
             id="password"
           /> </label
         ><br />
-        <!-- <button v-on:click="getUser(form.username)" type="button">Submit</button> -->
-        <!-- <button v-on:click="login(); getUser(form.username)" type="button">Submit</button> -->
         <button v-on:click="login" type="button" class="submitBtn">
           Submit
         </button>
@@ -44,7 +42,7 @@
 </template>
 
 <script>
-// import bookLib from './book.vue'
+import axioInvocation from "./axioInvocation";
 
 export default {
   name: "loginLib",
@@ -54,73 +52,77 @@ export default {
         username: "",
         password: "",
       },
+      user: [],
       error: [],
       errorAlert: false,
       errorMsg: "",
     };
   },
   methods: {
-    // login(){
-    //   // this.$router.push({name:'book'});
-    //     this.error=[];
-    //     for(const item in this.form){
-    //         if(this.form[item]==="" || this.form[item].length===0){
-    //             this.error.push(item)
-    //         }
-    //     }
-
-    //     if(this.error.length==0){
-    //         // getUser(form.username);
-    //         this.$router.push({name:'book'});
-    //         // alert("Welcome ", this.username);
-    //     }
-
-    //     console.warn(this.form, this.error)
-
-    // }
-    // onClick(){
-    //   // this.getUser=this.username,
-    //   bookLib.username=this.username;
-    //   this.login()
-    // },
-    login() {
+    async login() {
       this.error = [];
-      for (const item in this.form) {
-        if (this.form[item] === "" || this.form[item].length === 0) {
-          this.error.push(item);
-          console.warn(item);
-        }
+      this.$refs.username.style.borderColor = "rgb(0, 102, 255)";
+      this.$refs.password.style.borderColor = "rgb(0, 102, 255)";
+
+      if (
+        (this.form.username === "" || this.form.username.length === 0) &
+        (this.form.password === "" || this.form.password.length === 0)
+      ) {
+        this.error.push("username");
+        this.error.push("password");
+      } else if (this.form.username === "" || this.form.username.length === 0) {
+        this.error.push("username");
+      } else if (this.form.password === "" || this.form.password.length === 0) {
+        this.error.push("password");
+      } else {
+        let response = await axioInvocation.methods.axiosInvoc(
+          "http://localhost:3000/marklogic/users/" +
+            this.form.username +
+            "/" +
+            this.form.password
+        );
+        this.user = response;
+      }
+
+      if (
+        (this.form.username !== this.user.email) &
+        (this.form.password !== this.user.password)
+      ) {
+        this.error.push("invalidUsername");
+        this.error.push("invalidPassword");
+      } else if (this.form.username !== this.user.email) {
+        this.error.push("invalidUsername");
+      } else if (this.form.password !== this.user.password) {
+        this.error.push("invalidPassword");
       }
 
       if (this.error.length === 0) {
         localStorage.setItem("user-info", this.form.username);
         this.$router.push({ name: "book" });
-        // getUser(this.username);
-      } else {
-        if (!this.error.includes("password")) {
-          this.$refs.username.style.borderColor = "red";
-          this.errorMsg = "Error: Enter Username";
-          this.errorAlert = true;
-          console.log(this.errorAlert);
-          // this.$refs.username.innerText = "hi";
-          // this.$ref.username.style.backgroundColor = "#66bb6a";
-          // this.$ref.username.style.border = "1px solid #66bb6a";
-          // alert("please enter username");
-        } else if (!this.error.includes("username")) {
-          this.$refs.password.style.borderColor = "red";
-          // alert("please enter password");
-          this.errorMsg = "Error: Enter Password";
-          this.errorAlert = true;
-        } else if (this.error.includes("username" && "password")) {
-          this.$refs.username.style.borderColor = "red";
-          this.$refs.password.style.borderColor = "red";
-          // alert("please enter username & password");
-          this.errorMsg = "Error: Enter Username & Password";
-          this.errorAlert = true;
-        }
+      } else if (
+        this.error.includes("username") & this.error.includes("password")
+      ) {
+        this.$refs.username.style.borderColor = "red";
+        this.$refs.password.style.borderColor = "red";
+        this.errorMsg = "Error: Enter Username & Password";
+        this.errorAlert = true;
+      } else if (this.error.includes("username")) {
+        this.$refs.username.style.borderColor = "red";
+        this.errorMsg = "Error: Enter Username";
+        this.errorAlert = true;
+      } else if (this.error.includes("password")) {
+        this.$refs.password.style.borderColor = "red";
+        this.errorMsg = "Error: Enter Password";
+        this.errorAlert = true;
+      } else if (
+        this.error.includes("invalidUsername") ||
+        this.error.includes("invalidPassword")
+      ) {
+        this.$refs.username.style.borderColor = "red";
+        this.$refs.password.style.borderColor = "red";
+        this.errorMsg = "Error: Invalid Username or Password";
+        this.errorAlert = true;
       }
-      // this.$logger.saveToLog("aLogFile.txt", "This is a log file");
-      // this.$logger.warn("heahnca");
     },
   },
 };
