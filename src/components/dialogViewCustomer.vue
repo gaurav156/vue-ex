@@ -50,7 +50,7 @@ export default {
     for(var a = 0; a < this.customerIDListDialog.length; a++){
       let result = await axiosInvocation.methods.axiosInvoc(
       "http://localhost:3000/marklogic/customers/"+this.customerIDListDialog[a]);
-      this.resultFinalCustomer.push(result[0].customerName)
+      this.resultFinalCustomer.push(result.customerName)
     }
 
   }

@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     async updateCustomer() {
-      const result = await axios.post("http://localhost:3000/marklogic/customers", {
+      const result = await axios.put("http://localhost:3000/marklogic/customers", {
         customerID: this.customers.customerID,
         customerName: this.customers.customerName,
         membershipDate: this.customers.membershipDate,
@@ -108,7 +108,7 @@ export default {
     let result = await axiosInvocation.methods.axiosInvoc(
       "http://localhost:3000/marklogic/customers/" + this.$route.params.customerID
     );
-    this.customers = result[0];
+    this.customers = result;
     this.bookList = this.customers.bookID;
 
     let books = await axiosInvocation.methods.axiosInvoc(

@@ -36,7 +36,7 @@
             id="lastName"
           />
         </label>
-        <label>
+        <label class="inputClass">
           Password:
           <input
             type="password"
@@ -45,6 +45,16 @@
             ref="password"
             class="inputText"
             id="password"
+          /> </label
+        ><label>
+          Re-enter Password:
+          <input
+            type="password"
+            placeholder="Re-enter Password"
+            v-model="form.reenterPassword"
+            ref="reenterPassword"
+            class="inputText"
+            id="reenterPassword"
           /> </label
         ><br />
         <button v-on:click="signUp" type="button" class="submitBtn">
@@ -74,6 +84,7 @@ export default {
         firstName: "",
         lastName: "",
         password: "",
+        reenterPassword: "",
       },
       //   user: [],
       error: [],
@@ -88,17 +99,21 @@ export default {
       this.$refs.firstName.style.borderColor = "rgb(0, 102, 255)";
       this.$refs.lastName.style.borderColor = "rgb(0, 102, 255)";
       this.$refs.password.style.borderColor = "rgb(0, 102, 255)";
+      this.$refs.reenterPassword.style.borderColor = "rgb(0, 102, 255)";
 
       if (
         (this.form.email === "" || this.form.email.length === 0) &
         (this.form.firstName === "" || this.form.firstName.length === 0) &
         (this.form.lastName === "" || this.form.lastName.length === 0) &
-        (this.form.password === "" || this.form.password.length === 0)
+        (this.form.password === "" || this.form.password.length === 0) &
+        (this.form.reenterPassword === "" ||
+          this.form.reenterPassword.length === 0)
       ) {
         this.error.push("email");
         this.error.push("firstName");
         this.error.push("lastName");
         this.error.push("password");
+        this.error.push("reenterPassword");
       } else if (this.form.email === "" || this.form.email.length === 0) {
         this.error.push("email");
       } else if (
@@ -110,36 +125,58 @@ export default {
         this.error.push("lastName");
       } else if (this.form.password === "" || this.form.password.length === 0) {
         this.error.push("password");
+      } else if (
+        this.form.reenterPassword === "" ||
+        this.form.reenterPassword.length === 0
+      ) {
+        this.error.push("reenterPassword");
       } else {
-        const response = await axios.post(
-          "http://localhost:3000/marklogic/users",
-          {
-            id: this.form.id,
-            email: this.form.email,
-            firstName: this.form.firstName,
-            lastName: this.form.lastName,
-            password: this.form.password,
+        if (this.form.password !== this.form.reenterPassword) {
+          this.error.push("passNotMatch");
+        } else {
+          const response = await axios.post(
+            "http://localhost:3000/marklogic/users",
+            {
+              id: this.form.id,
+              email: this.form.email,
+              firstName: this.form.firstName,
+              lastName: this.form.lastName,
+              password: this.form.password,
+            }
+          );
+          if (response.status == 200) {
+            this.$router.push({ name: "login" });
           }
-        );
-        if (response.status == 200) {
-          this.$router.push({ name: "login" });
         }
       }
-
-      if (this.error.includes("email")) {
-        this.$refs.email.style.borderColor = "red";
-      }
-      if (this.error.includes("firstName")) {
-        this.$refs.firstName.style.borderColor = "red";
-      }
-      if (this.error.includes("lastName")) {
-        this.$refs.lastName.style.borderColor = "red";
-      }
-      if (this.error.includes("password")) {
+      if (this.error.includes("passNotMatch")) {
         this.$refs.password.style.borderColor = "red";
+        this.$refs.reenterPassword.style.borderColor = "red";
+        this.errorMsg = "Error: Password did not Match";
+        this.errorAlert = true;
+      } else {
+        if (this.error.includes("email")) {
+          this.$refs.email.style.borderColor = "red";
+        }
+        if (this.error.includes("firstName")) {
+          this.$refs.firstName.style.borderColor = "red";
+        }
+        if (this.error.includes("lastName")) {
+          this.$refs.lastName.style.borderColor = "red";
+        }
+        if (this.error.includes("password")) {
+          this.$refs.password.style.borderColor = "red";
+        }
+        if (this.error.includes("reenterPassword")) {
+          this.$refs.reenterPassword.style.borderColor = "red";
+        }
+        if (this.error.includes("passNotMatch")) {
+          this.$refs.password.style.borderColor = "red";
+          this.$refs.reenterPassword.style.borderColor = "red";
+        }
+        this.errorMsg = "Error: Please fill all the fields";
+        this.errorAlert = true;
       }
-      this.errorMsg = "Error: Please fill all the fields";
-      this.errorAlert = true;
     },
   },
 };
@@ -149,6 +186,8 @@ export default {
 h1 {
   text-align: center;
   color: rgb(0, 102, 255);
+  padding-top: 6px;
+  padding-bottom: 0px;
 }
 p {
   padding: 10px;
@@ -177,7 +216,7 @@ div {
   display: block;
   padding: 10px;
   margin: auto;
-  margin-top: 3%;
+  margin-top: 1.75%;
   width: 302px;
   height: fit-content;
   background-color: white;
@@ -208,7 +247,7 @@ div {
   margin-top: 5px;
 }
 .inputClass {
-  padding-bottom: 10px;
+  padding-bottom: 6px;
 }
 .inputDiv {
   display: grid;

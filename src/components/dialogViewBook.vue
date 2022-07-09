@@ -48,7 +48,7 @@ export default {
     for(var a = 0; a < this.bookIDListDialog.length; a++){
       let res = await axiosInvocation.methods.axiosInvoc(
       "http://localhost:3000/marklogic/books/"+this.bookIDListDialog[a]);
-      this.resultFinalBook.push(res[0].bookTitle)
+      this.resultFinalBook.push(res.bookTitle)
     }
 
   }
