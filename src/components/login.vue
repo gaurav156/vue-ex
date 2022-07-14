@@ -29,6 +29,7 @@
           Login
         </button>
         <router-link :to="'/signup'" class="routerLink">click here to Register!</router-link>
+        <router-link :to="'/forgotpassword'" class="routerLink">forgot Password? click here to reset!</router-link>
         <div v-if="this.errorAlert" class="errorAlertClass">
           <p>{{ errorMsg }}</p>
         </div>

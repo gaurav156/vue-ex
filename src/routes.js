@@ -8,6 +8,8 @@ import updateBook from '@/components/updateBook.vue';
 import updateCustomer from '@/components/updateCustomer.vue';
 import addBook from '@/components/addBook.vue';
 import addCustomer from '@/components/addCustomer.vue';
+import forgotPassword from '@/components/forgotPassword';
+
 
 const routes=[
     {
@@ -29,6 +31,11 @@ const routes=[
         name: 'signUp',
         path: '/signup',
         component: signUpLib
+    },
+    {
+        name: 'forgotPassword',
+        path: '/forgotpassword',
+        component: forgotPassword,
     },
     {
         name: 'testAxios',
