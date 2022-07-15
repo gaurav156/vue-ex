@@ -1,18 +1,20 @@
 <template>
-  <div class="bg">
+  <div class="backdropR">
     <div class="LoginCompo">
+      <slot></slot>
       <h1>Sign Up</h1>
       <div class="inputDiv">
         <label class="inputClass">
           Email:
-          <input
+          <!-- <input
             type="text"
-            placeholder="Enter Email ID"
-            v-model="form.email"
-            ref="email"
+            placeholder="Enter Email"
+            v-model.lazy="email"
+            ref="emailID"
             class="inputText"
-            id="email"
-          />
+            id="emailID"
+          /> -->
+          <p class="inputText" id="emailFixed">{{ userEmail }}</p>
         </label>
         <label class="inputClass">
           First Name:
@@ -76,17 +78,17 @@ import axios from "axios";
 
 export default {
   name: "signUpLib",
+  props: { userEmail: String },
   data() {
     return {
       form: {
         id: "",
-        email: "",
+        email: this.userEmail,
         firstName: "",
         lastName: "",
         password: "",
         reenterPassword: "",
       },
-      //   user: [],
       error: [],
       errorAlert: false,
       errorMsg: "",
@@ -95,27 +97,22 @@ export default {
   methods: {
     async signUp() {
       this.error = [];
-      this.$refs.email.style.borderColor = "rgb(0, 102, 255)";
       this.$refs.firstName.style.borderColor = "rgb(0, 102, 255)";
       this.$refs.lastName.style.borderColor = "rgb(0, 102, 255)";
       this.$refs.password.style.borderColor = "rgb(0, 102, 255)";
       this.$refs.reenterPassword.style.borderColor = "rgb(0, 102, 255)";
 
       if (
-        (this.form.email === "" || this.form.email.length === 0) &
         (this.form.firstName === "" || this.form.firstName.length === 0) &
         (this.form.lastName === "" || this.form.lastName.length === 0) &
         (this.form.password === "" || this.form.password.length === 0) &
         (this.form.reenterPassword === "" ||
           this.form.reenterPassword.length === 0)
       ) {
-        this.error.push("email");
         this.error.push("firstName");
         this.error.push("lastName");
         this.error.push("password");
         this.error.push("reenterPassword");
-      } else if (this.form.email === "" || this.form.email.length === 0) {
-        this.error.push("email");
       } else if (
         this.form.firstName === "" ||
         this.form.firstName.length === 0
@@ -138,7 +135,7 @@ export default {
             "http://localhost:3000/marklogic/users",
             {
               id: this.form.id,
-              email: this.form.email,
+              email: this.userEmail,
               firstName: this.form.firstName,
               lastName: this.form.lastName,
               password: this.form.password,
@@ -155,9 +152,6 @@ export default {
         this.errorMsg = "Error: Password did not Match";
         this.errorAlert = true;
       } else {
-        if (this.error.includes("email")) {
-          this.$refs.email.style.borderColor = "red";
-        }
         if (this.error.includes("firstName")) {
           this.$refs.firstName.style.borderColor = "red";
         }
@@ -271,5 +265,23 @@ div {
   text-align: center;
   padding-top: 6px;
   color: rgb(0, 102, 255);
+}
+
+.backdropR {
+  /* background: rgba(0, 0, 0, 0.5); */
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+
+  background-color: rgb(0, 102, 255);
+  padding: 0px;
+}
+
+#emailFixed {
+  font-size: 83.502%;
+  color: grey;
 }
 </style>
