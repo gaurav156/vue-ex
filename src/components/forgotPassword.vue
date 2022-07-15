@@ -43,17 +43,11 @@
         </button>
         <router-link :to="'/login'" class="cancelBtn">Cancle</router-link>
         <resetPassword v-show="reset" :userEmail="this.form.email">
-          <!-- <button @click.prevent="reset=false" class="routerLink">Back</button> -->
         </resetPassword>
         <div v-if="this.errorAlert" class="errorAlertClass">
           <p>{{ errorMsg }}</p>
         </div>
       </div>
-      <!-- <bookLib :username="form.username"/> -->
-      <!-- <bookLib /> -->
-      <!-- <v-if redirect><router-link class="nav-element" to="/">Books</router-link></v-if> -->
-      <!-- <bookLib :username= "form.username"/> -->
-      <!-- <bookLib v-show="Hidden" :username= "form.username"/> -->
     </div>
   </div>
 </template>
@@ -82,22 +76,27 @@ export default {
   methods: {
     async sendOtp() {
       if (this.form.email === "" || this.form.email.length === 0) {
-        console.log("Error : Enter Email");
         this.errorMsg = "Error : Enter Email";
         this.errorAlert = true;
         this.otpSent = false;
       } else {
-        let response = await axios.get(
-          "http://localhost:3000/otp/send/" + this.form.email
+        let result = await axios.get(
+          "http://localhost:3000/marklogic/check/" + this.form.email
         );
-        if (response.status === 200) {
-          console.log("Otp Sent");
-          this.errorAlert = false;
-          this.otpSent = true;
-          // localStorage.setItem("email", this.form.email);
+        if (result.data === true) {
+          let response = await axios.get(
+            "http://localhost:3000/otp/send/" + this.form.email
+          );
+          if (response.status === 200) {
+            this.errorAlert = false;
+            this.otpSent = true;
+          } else {
+            this.errorMsg = "Error : OTP not sent";
+            this.errorAlert = true;
+            this.otpSent = false;
+          }
         } else {
-          console.log("Error : OTP not sent");
-          this.errorMsg = "Error : OTP not sent";
+          this.errorMsg = "Error : Email not Registered";
           this.errorAlert = true;
           this.otpSent = false;
         }
@@ -110,11 +109,9 @@ export default {
       );
       let result = response.data;
       if (result === "verified") {
-        console.log("Otp Verified");
         this.reset = true;
         // this.$router.push({ name: "login" });
       } else {
-        console.log("Error : Wrong OTP");
         this.errorMsg = "Error : Wrong OTP";
         this.errorAlert = true;
         this.reset = false;
